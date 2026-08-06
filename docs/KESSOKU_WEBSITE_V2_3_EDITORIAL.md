@@ -8,7 +8,7 @@ V2.3 improves perceived production quality without changing the content model, i
 
 ### Global reading progress
 
-A two-pixel progress line uses CSS scroll-linked animation when the browser supports it. Unsupported browsers simply omit the effect. Reduced-motion users do not receive the animation.
+A two-pixel progress line uses CSS scroll-linked animation only when the browser explicitly supports `animation-timeline`. Unsupported browsers omit the effect. Reduced-motion users do not receive the animation.
 
 ### Studio marquee
 
@@ -79,6 +79,20 @@ No unofficial social or contact destinations were added.
 
 The V2.3 layer adds only CSS and small HTML fragments. It introduces no new Python dependency, remote request, JavaScript bundle, analytics library, or external font.
 
+## Repository validation
+
+`scripts/validate_site.py` performs a dependency-free repository audit:
+
+- parses every Python file with `ast`
+- rejects deprecated `use_container_width` source calls
+- rejects the removed navigation package in `requirements.txt`
+- validates media-manifest IDs, filenames, and WebP extensions
+- validates committed binary or Base64 media payloads
+- enforces the 1.5 MB media budget
+- verifies required V2.3 files
+
+The script is committed but has not been executed against a local checkout in this connector-only environment. Community Cloud preview remains the authoritative runtime validation.
+
 ## Preview checklist
 
 Review the preview branch at desktop, tablet, and phone widths.
@@ -88,6 +102,7 @@ Review the preview branch at desktop, tablet, and phone widths.
 - Top identity bar and primary navigation do not overlap.
 - Marquee does not create horizontal page overflow.
 - Scroll progress remains two pixels high and does not cover controls.
+- Unsupported browsers do not display a broken progress effect.
 - Reduced-motion mode removes moving presentation elements.
 
 ### Heroes
@@ -108,6 +123,25 @@ Review the preview branch at desktop, tablet, and phone widths.
 - Three columns collapse cleanly.
 - No unofficial link appears.
 - Long status text does not overflow.
+
+## Evidence boundary
+
+At commit `72b9a2ebbb7adda6aa1bc1399aa16d75a6017b47`, the branch was 55 commits ahead and 0 behind `main` before this documentation consolidation.
+
+Confirmed through repository inspection:
+
+- no `use_container_width` source matches
+- no `streamlit-option-menu` requirement
+- V2.3 stylesheet imported by the shared component layer
+- README updated to V2.3
+- media slots remain fallback-safe
+
+Not yet confirmed through a browser render:
+
+- final sticky stacking across all viewport sizes
+- scroll-linked animation behavior in Streamlit Community Cloud browsers
+- campaign-media focal crops after binary upload
+- complete interactive route smoke test
 
 ## Definition of done
 
