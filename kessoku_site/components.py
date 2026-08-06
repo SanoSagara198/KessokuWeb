@@ -6,6 +6,7 @@ from html import escape
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 
+from .campaign import CAMPAIGN_CSS
 from .media import campaign_asset
 from .models import DetailBlock, Game, StoryBeat
 from .polish import POLISH_CSS
@@ -40,6 +41,7 @@ def _campaign_background(filename: str | None, *, position: str = "center") -> s
 
 def topbar() -> None:
     st.markdown(POLISH_CSS, unsafe_allow_html=True)
+    st.markdown(CAMPAIGN_CSS, unsafe_allow_html=True)
     st.markdown(
         """
         <div class="k-topline">
