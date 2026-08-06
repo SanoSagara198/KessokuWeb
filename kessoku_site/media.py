@@ -18,7 +18,7 @@ MEDIA_ROOT = REPOSITORY_ROOT / "assets" / "media"
 # procedural fallback.
 _PROCEDURAL_TO_MEDIA = {
     "8dff92b1fa0e46ff07531c00800905d425df22d0b8f060f030de579888bde3e5": (
-        "super-soldiers-city-of-zombies.webp"
+        "super-soldiers-hero.webp"
     ),
     "002ae6f5879b8d7ee27d0a967b60ee0498c03c1efc3e0574e4f850511d3c463d": (
         "heist-city-hero.webp"
