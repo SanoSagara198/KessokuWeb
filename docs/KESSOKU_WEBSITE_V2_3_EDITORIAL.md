@@ -126,7 +126,7 @@ Review the preview branch at desktop, tablet, and phone widths.
 
 ## Evidence boundary
 
-The V2.3 implementation head before this documentation refresh was `c7bda19045855209e966ccb744a32a467fd61f0c`. The branch remained 0 commits behind `main` throughout the pass.
+The implementation head reviewed before this final documentation-only commit is `c7bda19045855209e966ccb744a32a467fd61f0c`.
 
 Confirmed through repository inspection:
 
