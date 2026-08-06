@@ -85,7 +85,7 @@ The V2.3 layer adds only CSS and small HTML fragments. It introduces no new Pyth
 
 - parses every Python file with `ast`
 - rejects deprecated `use_container_width` source calls
-- rejects the removed navigation package in `requirements.txt`
+- rejects the removed navigation dependency in `requirements.txt`
 - validates media-manifest IDs, filenames, and WebP extensions
 - validates committed binary or Base64 media payloads
 - enforces the 1.5 MB media budget
@@ -126,14 +126,14 @@ Review the preview branch at desktop, tablet, and phone widths.
 
 ## Evidence boundary
 
-The implementation head reviewed before this final documentation-only commit is `c7bda19045855209e966ccb744a32a467fd61f0c`.
+The implementation head reviewed before the final documentation and README wording commits was `c7bda19045855209e966ccb744a32a467fd61f0c`.
 
 Confirmed through repository inspection:
 
 - no `use_container_width` source matches
-- no `streamlit-option-menu` requirement
-- V2.3 stylesheet imported by the shared component layer
-- README updated to V2.3 with the validation command
+- the removed navigation package is absent from `requirements.txt`
+- V2.3 stylesheet is imported by the shared component layer
+- README is updated to V2.3 with the validation command
 - media slots remain fallback-safe
 
 Not yet confirmed through a browser render:
