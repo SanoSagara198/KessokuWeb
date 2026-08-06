@@ -114,7 +114,7 @@ def home() -> None:
         "The site now exposes high-level development tracks without turning the studio homepage into an internal engineering dashboard.",
         "ROADMAP / PUBLIC VIEW",
     )
-    st.altair_chart(roadmap_chart("#F4F2EB"), use_container_width=True)
+    st.altair_chart(roadmap_chart("#F4F2EB"), width="stretch")
 
 
 def super_soldiers() -> None:
@@ -125,7 +125,7 @@ def super_soldiers() -> None:
         SUPER_SOLDIERS.accent,
         "OPERATION / LIVE<br>COMBAT / SERVER-OWNED<br>PLATFORM / ROBLOX",
     )
-    st.image(poster(SUPER_SOLDIERS.accent_rgb, 71), use_container_width=True)
+    st.image(poster(SUPER_SOLDIERS.accent_rgb, 71), width="stretch")
 
     section(
         "Built as one combat system, not two disconnected modes.",
@@ -147,7 +147,7 @@ def super_soldiers() -> None:
         mode_panel(mode.strapline, mode.title, mode.description, mode.facts, SUPER_SOLDIERS.accent)
         st_lottie(load_lottie(), height=120, key=f"signal-{mode.key}", speed=.7)
     with chart:
-        st.plotly_chart(metric_radar(mode.metrics, SUPER_SOLDIERS.accent), use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(metric_radar(mode.metrics, SUPER_SOLDIERS.accent), width="stretch", config={"displayModeBar": False})
 
     section(
         "Current development track.",
@@ -173,7 +173,7 @@ def heist_city() -> None:
         HEIST_CITY.accent,
         "CITY / ONLINE<br>TRAFFIC / AUTHORITATIVE<br>ALIGNMENTS / 03",
     )
-    st.image(poster(HEIST_CITY.accent_rgb, 1987), use_container_width=True)
+    st.image(poster(HEIST_CITY.accent_rgb, 1987), width="stretch")
 
     section(
         "A city that reacts instead of merely decorating the map.",
@@ -194,7 +194,7 @@ def heist_city() -> None:
     with panel:
         mode_panel(alignment.code, alignment.title, f"{alignment.description} {alignment.objective}", ("Shared city", "Distinct intent", "Escalating consequence", "Server-owned response"), alignment.accent)
     with chart:
-        st.plotly_chart(metric_radar(alignment.metrics, alignment.accent), use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(metric_radar(alignment.metrics, alignment.accent), width="stretch", config={"displayModeBar": False})
 
     section(
         "Pursuit intelligence, visualized.",
@@ -202,7 +202,7 @@ def heist_city() -> None:
         "HEIST CITY / CITY SIMULATION",
     )
     stage = st.slider("Pursuit progression", min_value=1, max_value=8, value=5, label_visibility="collapsed")
-    st.plotly_chart(city_pursuit_figure(stage, alignment.accent), use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(city_pursuit_figure(stage, alignment.accent), width="stretch", config={"displayModeBar": False})
 
     section(
         "Current development track.",
