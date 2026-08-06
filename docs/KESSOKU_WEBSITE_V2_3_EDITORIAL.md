@@ -126,14 +126,14 @@ Review the preview branch at desktop, tablet, and phone widths.
 
 ## Evidence boundary
 
-At commit `72b9a2ebbb7adda6aa1bc1399aa16d75a6017b47`, the branch was 55 commits ahead and 0 behind `main` before this documentation consolidation.
+The V2.3 implementation head before this documentation refresh was `c7bda19045855209e966ccb744a32a467fd61f0c`. The branch remained 0 commits behind `main` throughout the pass.
 
 Confirmed through repository inspection:
 
 - no `use_container_width` source matches
 - no `streamlit-option-menu` requirement
 - V2.3 stylesheet imported by the shared component layer
-- README updated to V2.3
+- README updated to V2.3 with the validation command
 - media slots remain fallback-safe
 
 Not yet confirmed through a browser render:
