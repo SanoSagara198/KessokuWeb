@@ -13,11 +13,22 @@ from .polish import POLISH_CSS
 
 
 _HERO_MEDIA = {
+    "WORLDS WITH CONSEQUENCE.": ("kessoku-home-dual-world-hero.webp", False),
+    "SUPER SOLDIERS": ("super-soldiers-hero.webp", True),
+    "HEIST CITY": ("heist-city-hero.webp", True),
+    "KESSOKU": ("kessoku-studio-manifesto.webp", False),
+}
+
+_CARD_MEDIA = {
+    "SUPER SOLDIERS": "super-soldiers-hero.webp",
     "HEIST CITY": "heist-city-hero.webp",
 }
 
 _PANEL_MEDIA = {
+    "5V5 ARENA": "super-soldiers-arena-operation.webp",
     "CITY OF ZOMBIES": "super-soldiers-city-of-zombies.webp",
+    "CRIMINAL": "heist-city-criminal.webp",
+    "POLICE": "heist-city-police.webp",
     "VIGILANTE": "heist-city-vigilante.webp",
 }
 
@@ -54,10 +65,10 @@ def topbar() -> None:
 
 
 def hero(title: str, eyebrow: str, lede: str, accent: str, code: str) -> None:
-    media_filename = _HERO_MEDIA.get(title)
+    media_filename, suppress_legacy = _HERO_MEDIA.get(title, (None, False))
     media_style = _campaign_background(media_filename, position="center 42%")
     media_class = " k-hero--campaign" if media_style else ""
-    if media_style and media_filename:
+    if media_style and media_filename and suppress_legacy:
         suppress_next_campaign_image(media_filename)
     st.markdown(
         f"""
@@ -100,9 +111,11 @@ def stat_strip(items: tuple[tuple[str, str, str], ...], accent: str) -> None:
 
 def game_card(game: Game, number: str) -> None:
     tags = "".join(f'<span class="k-tag">{escape(tag)}</span>' for tag in (game.status, game.category, "ROBLOX"))
+    media_style = _campaign_background(_CARD_MEDIA.get(game.title), position="center")
+    media_class = " k-game-card--campaign" if media_style else ""
     st.markdown(
         f"""
-        <article class="k-game-card" style="--accent:{game.accent};--soft:rgba({game.accent_rgb[0]},{game.accent_rgb[1]},{game.accent_rgb[2]},.12)">
+        <article class="k-game-card{media_class}" style="--accent:{game.accent};--soft:rgba({game.accent_rgb[0]},{game.accent_rgb[1]},{game.accent_rgb[2]},.12);{media_style}">
           <div class="k-game-grid"></div><div class="k-game-art"></div><div class="k-card-index">{number}</div>
           <div class="k-card-top"><span>PROJECT / {number}</span><span>{escape(game.status)}</span></div>
           <div class="k-card-body"><h3 class="k-card-title">{escape(game.title)}</h3><p class="k-card-copy">{escape(game.pitch)}</p><div class="k-tags">{tags}</div></div>
