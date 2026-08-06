@@ -5,7 +5,7 @@ from html import escape
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 
-from .models import Game
+from .models import DetailBlock, Game, StoryBeat
 
 
 def topbar() -> None:
@@ -24,7 +24,7 @@ def hero(title: str, eyebrow: str, lede: str, accent: str, code: str) -> None:
     st.markdown(
         f"""
         <section class="k-hero" style="--hero-accent:{accent}">
-          <div class="k-orbit"></div>
+          <div class="k-hero-noise"></div><div class="k-orbit"></div><div class="k-crosshair"></div>
           <div>
             <div class="k-eyebrow">{escape(eyebrow)}</div>
             <h1 class="k-display">{escape(title)}</h1>
@@ -52,12 +52,20 @@ def section(title: str, copy: str, kicker: str = "KESSOKU / SYSTEM") -> None:
     )
 
 
+def stat_strip(items: tuple[tuple[str, str, str], ...], accent: str) -> None:
+    cards = "".join(
+        f'<div class="k-stat"><div class="k-stat-value">{escape(value)}</div><div class="k-stat-label">{escape(label)}</div><div class="k-stat-copy">{escape(copy)}</div></div>'
+        for value, label, copy in items
+    )
+    st.markdown(f'<div class="k-stat-strip" style="--accent:{accent}">{cards}</div>', unsafe_allow_html=True)
+
+
 def game_card(game: Game, number: str) -> None:
     tags = "".join(f'<span class="k-tag">{escape(tag)}</span>' for tag in (game.status, game.category, "ROBLOX"))
     st.markdown(
         f"""
         <article class="k-game-card" style="--accent:{game.accent};--soft:rgba({game.accent_rgb[0]},{game.accent_rgb[1]},{game.accent_rgb[2]},.12)">
-          <div class="k-game-grid"></div><div class="k-game-art"></div>
+          <div class="k-game-grid"></div><div class="k-game-art"></div><div class="k-card-index">{number}</div>
           <div class="k-card-top"><span>PROJECT / {number}</span><span>{escape(game.status)}</span></div>
           <div class="k-card-body"><h3 class="k-card-title">{escape(game.title)}</h3><p class="k-card-copy">{escape(game.pitch)}</p><div class="k-tags">{tags}</div></div>
         </article>
@@ -73,12 +81,40 @@ def feature_grid(game: Game) -> None:
     st.markdown(f'<div class="k-feature-grid" style="--accent:{game.accent}">{"".join(body)}</div>', unsafe_allow_html=True)
 
 
-def mode_panel(label: str, title: str, description: str, facts: tuple[str, ...], accent: str) -> None:
-    fact_html = "".join(f'<div class="k-fact">{escape(fact)}</div>' for fact in facts)
+def editorial_panel(code: str, title: str, description: str, bullets: tuple[str, ...], accent: str) -> None:
+    bullet_html = "".join(f'<li>{escape(item)}</li>' for item in bullets)
     st.markdown(
-        f'<div class="k-mode-panel" style="--accent:{accent}"><div class="k-mode-label">{escape(label)}</div><div class="k-mode-title">{escape(title)}</div><p class="k-mode-copy">{escape(description)}</p><div class="k-facts">{fact_html}</div></div>',
+        f'<article class="k-editorial" style="--accent:{accent}"><div class="k-editorial-code">{escape(code)}</div><h3>{escape(title)}</h3><p>{escape(description)}</p><ul>{bullet_html}</ul></article>',
         unsafe_allow_html=True,
     )
+
+
+def mode_panel(label: str, title: str, description: str, facts: tuple[str, ...], accent: str, *, fantasy: str | None = None, objective: str | None = None) -> None:
+    fact_html = "".join(f'<div class="k-fact">{escape(fact)}</div>' for fact in facts)
+    fantasy_html = f'<div class="k-mode-fantasy">{escape(fantasy)}</div>' if fantasy else ""
+    objective_html = f'<div class="k-objective"><span>OPERATIONAL OBJECTIVE</span>{escape(objective)}</div>' if objective else ""
+    st.markdown(
+        f'<div class="k-mode-panel" style="--accent:{accent}"><div class="k-mode-label">{escape(label)}</div><div class="k-mode-title">{escape(title)}</div>{fantasy_html}<p class="k-mode-copy">{escape(description)}</p>{objective_html}<div class="k-facts">{fact_html}</div></div>',
+        unsafe_allow_html=True,
+    )
+
+
+def story_timeline(beats: tuple[StoryBeat, ...], accent: str) -> None:
+    body = "".join(
+        f'<article class="k-beat"><div class="k-beat-code">{escape(beat.code)}</div><h4>{escape(beat.title)}</h4><p>{escape(beat.description)}</p></article>'
+        for beat in beats
+    )
+    st.markdown(f'<div class="k-beat-grid" style="--accent:{accent}">{body}</div>', unsafe_allow_html=True)
+
+
+def detail_accordions(blocks: tuple[DetailBlock, ...], accent: str, key_prefix: str) -> None:
+    for index, block in enumerate(blocks, 1):
+        with st.expander(f"{index:02d} / {block.title} — {block.summary}", expanded=index == 1):
+            st.markdown(f'<div class="k-expander-copy" style="--accent:{accent}">{escape(block.description)}</div>', unsafe_allow_html=True)
+            cols = st.columns(2, gap="small")
+            for bullet_index, bullet in enumerate(block.bullets):
+                with cols[bullet_index % 2]:
+                    st.markdown(f'<div class="k-mini-rule"><span>{key_prefix.upper()} / {bullet_index + 1:02d}</span>{escape(bullet)}</div>', unsafe_allow_html=True)
 
 
 def roadmap(items: tuple[tuple[str, str, str], ...], accent: str) -> None:
@@ -98,6 +134,13 @@ def action_button(label: str, key: str, accent: str) -> bool:
         """,
     ):
         return st.button(label, key=key, width="stretch")
+
+
+def update_card(state: str, project: str, title: str, description: str) -> None:
+    st.markdown(
+        f'<article class="k-update"><div class="k-update-meta"><span>{escape(state)}</span><span>{escape(project)}</span></div><h4>{escape(title)}</h4><p>{escape(description)}</p></article>',
+        unsafe_allow_html=True,
+    )
 
 
 def footer() -> None:
