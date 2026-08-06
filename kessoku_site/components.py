@@ -1,12 +1,41 @@
 from __future__ import annotations
 
+import base64
 from html import escape
 
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 
+from .media import campaign_asset
 from .models import DetailBlock, Game, StoryBeat
 from .polish import POLISH_CSS
+
+
+_HERO_MEDIA = {
+    "HEIST CITY": "heist-city-hero.webp",
+}
+
+_PANEL_MEDIA = {
+    "CITY OF ZOMBIES": "super-soldiers-city-of-zombies.webp",
+    "VIGILANTE": "heist-city-vigilante.webp",
+}
+
+
+def _campaign_background(filename: str | None, *, position: str = "center") -> str:
+    if not filename:
+        return ""
+    payload = campaign_asset(filename)
+    if not payload:
+        return ""
+    encoded = base64.b64encode(payload).decode("ascii")
+    return (
+        "background-image:"
+        "linear-gradient(90deg,rgba(5,7,10,.97) 0%,rgba(5,7,10,.86) 42%,"
+        "rgba(5,7,10,.38) 76%,rgba(5,7,10,.18) 100%),"
+        "linear-gradient(180deg,rgba(5,7,10,.08),rgba(5,7,10,.68)),"
+        f"url('data:image/webp;base64,{encoded}');"
+        f"background-position:{position};background-size:cover;background-repeat:no-repeat;"
+    )
 
 
 def topbar() -> None:
@@ -23,9 +52,11 @@ def topbar() -> None:
 
 
 def hero(title: str, eyebrow: str, lede: str, accent: str, code: str) -> None:
+    media_style = _campaign_background(_HERO_MEDIA.get(title), position="center 42%")
+    media_class = " k-hero--campaign" if media_style else ""
     st.markdown(
         f"""
-        <section class="k-hero" style="--hero-accent:{accent}">
+        <section class="k-hero{media_class}" style="--hero-accent:{accent};{media_style}">
           <div class="k-hero-noise"></div><div class="k-orbit"></div><div class="k-crosshair"></div>
           <div>
             <div class="k-eyebrow">{escape(eyebrow)}</div>
@@ -95,8 +126,11 @@ def mode_panel(label: str, title: str, description: str, facts: tuple[str, ...],
     fact_html = "".join(f'<div class="k-fact">{escape(fact)}</div>' for fact in facts)
     fantasy_html = f'<div class="k-mode-fantasy">{escape(fantasy)}</div>' if fantasy else ""
     objective_html = f'<div class="k-objective"><span>OPERATIONAL OBJECTIVE</span>{escape(objective)}</div>' if objective else ""
+    media_style = _campaign_background(_PANEL_MEDIA.get(title), position="center")
+    media_class = " k-mode-panel--campaign" if media_style else ""
+    media_label = '<div class="k-mode-media-label">CAMPAIGN FRAME / APPROVED</div>' if media_style else ""
     st.markdown(
-        f'<div class="k-mode-panel" style="--accent:{accent}"><div class="k-mode-label">{escape(label)}</div><div class="k-mode-title">{escape(title)}</div>{fantasy_html}<p class="k-mode-copy">{escape(description)}</p>{objective_html}<div class="k-facts">{fact_html}</div></div>',
+        f'<div class="k-mode-panel{media_class}" style="--accent:{accent};{media_style}">{media_label}<div class="k-mode-label">{escape(label)}</div><div class="k-mode-title">{escape(title)}</div>{fantasy_html}<p class="k-mode-copy">{escape(description)}</p>{objective_html}<div class="k-facts">{fact_html}</div></div>',
         unsafe_allow_html=True,
     )
 
