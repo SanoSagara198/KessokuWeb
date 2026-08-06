@@ -71,6 +71,14 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+## Validate the repository
+
+```bash
+python scripts/validate_site.py
+```
+
+The validator checks Python syntax, deprecated Streamlit width usage, dependency cleanup, required files, media-manifest integrity, WebP payload validity, and the 1.5 MB media budget.
+
 ## Deploy
 
 Streamlit Community Cloud should use:
@@ -100,11 +108,14 @@ kessoku_site/
   polish.py
   theme.py
   visuals.py
+scripts/
+  validate_site.py
 docs/
   IMAGE_ASSET_PROMPTS.md
   IMAGE_SHOT_LIST.md
   KESSOKU_WEBSITE_V2.md
   KESSOKU_WEBSITE_V2_1_FEATURES.md
+  KESSOKU_WEBSITE_V2_3_EDITORIAL.md
   MEDIA_INTEGRATION.md
 ```
 
