@@ -60,7 +60,7 @@ A cinematic, interactive Streamlit portfolio for **Kessoku Games**, **Super Sold
 - Pillow
 - Pydantic
 
-Each library has a narrow responsibility. Primary navigation no longer depends on `streamlit-option-menu`; a local compatibility surface delegates to native Streamlit pills while preserving the route API.
+Each library has a narrow responsibility. Primary navigation no longer depends on the former third-party menu package; a local compatibility surface delegates to native Streamlit pills while preserving the route API.
 
 ## Run locally
 
