@@ -1,16 +1,19 @@
-# Kessoku Games — Streamlit website
+# Kessoku Games Website V2
 
-A responsive, deployable studio website for **Kessoku Games**, featuring dedicated pages for **Super Soldiers** and **Heist City**.
+A cinematic, interactive Streamlit site for **Kessoku Games**, **Super Soldiers**, and **Heist City**.
 
-## Included
+## What changed in V2
 
-- Kessoku landing page
-- Super Soldiers project page with interactive mode brief
-- Heist City project page with interactive alignment brief
-- Studio principles page
-- Responsive layout for desktop and mobile
-- Custom CSS visual system with no external asset dependency
-- Streamlit Community Cloud configuration
+- Replaced the dashboard-like presentation with an editorial game-studio layout.
+- Added distinct visual systems for Super Soldiers and Heist City.
+- Added query-string-backed navigation so views can be shared.
+- Added interactive operation and alignment selectors.
+- Added Plotly radar profiles and a Heist City pursuit visualization.
+- Added Altair roadmap visualization.
+- Added cached procedural WebP art through Pillow and NumPy.
+- Added Pydantic content validation.
+- Added a local Lottie signal animation.
+- Added reduced-motion support and a responsive mobile layout.
 
 ## Run locally
 
@@ -23,16 +26,26 @@ streamlit run app.py
 
 ## Deploy
 
-1. Push this folder to a GitHub repository.
-2. In Streamlit Community Cloud, create an app from the repository.
-3. Set the entry point to `app.py`.
+Streamlit Community Cloud should use:
 
-## Content changes
+- Branch: `main` after review and merge
+- Entry point: `app.py`
+- Python: `3.12`
 
-Project copy is defined near the top of `app.py` in the `SUPER_SOLDIERS` and `HEIST_CITY` data objects. Update those objects to change descriptions, pillars, status, and roadmap entries.
+## Repository structure
 
-Official Roblox, Discord, press, social, or playtest URLs were not supplied, so this starter does not invent public links. Add them only after confirming the canonical destinations.
+```text
+app.py
+assets/signal.json
+kessoku_site/
+  components.py
+  content.py
+  models.py
+  theme.py
+  visuals.py
+docs/KESSOKU_WEBSITE_V2.md
+```
 
-## Architecture note
+## Media policy
 
-This is a presentation site. It does not connect to Roblox DataStores, game servers, or private operational systems. Public live statistics should be exposed through a separate validated API rather than embedded credentials or direct data access in Streamlit.
+The current build uses procedural art-direction placeholders. Replace them with approved game screenshots, key art, logos, and short gameplay loops as soon as those assets are available. Do not publish invented Roblox, Discord, YouTube, press, or playtest links.
