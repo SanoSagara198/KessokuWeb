@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "policy": {
+    "format": "WebP",
+    "color_space": "sRGB",
+    "max_file_size_mb": 1.5,
+    "text_in_image": false,
+    "logos_in_image": false,
+    "safe_area": "Keep the outer 10 percent free of critical faces, weapons, vehicles, and landmarks."
+  },
+  "slots": [
+    {
+      "id": "home_dual_world_hero",
+      "filename": "kessoku-home-dual-world-hero.webp",
+      "aspect_ratio": "21:9",
+      "minimum_pixels": "2520x1080",
+      "purpose": "Homepage cinematic portfolio statement combining both worlds.",
+      "focal_safe_area": "Center 60 percent; leave lower-left and upper-right available for typography."
+    },
+    {
+      "id": "super_soldiers_hero",
+      "filename": "super-soldiers-hero.webp",
+      "aspect_ratio": "21:9",
+      "minimum_pixels": "2520x1080",
+      "purpose": "Primary Super Soldiers project hero.",
+      "focal_safe_area": "Squad grouped in center-right; negative space on left for title."
+    },
+    {
+      "id": "super_soldiers_arena",
+      "filename": "super-soldiers-arena-operation.webp",
+      "aspect_ratio": "16:9",
+      "minimum_pixels": "1920x1080",
+      "purpose": "5v5 Arena operation panel.",
+      "focal_safe_area": "Main confrontation centered; preserve top-left for labels."
+    },
+    {
+      "id": "super_soldiers_zombies",
+      "filename": "super-soldiers-city-of-zombies.webp",
+      "aspect_ratio": "16:9",
+      "minimum_pixels": "1920x1080",
+      "purpose": "City of Zombies operation panel.",
+      "focal_safe_area": "Survivor squad in lower-middle; skyline visible; no critical detail on edges."
+    },
+    {
+      "id": "heist_city_hero",
+      "filename": "heist-city-hero.webp",
+      "aspect_ratio": "21:9",
+      "minimum_pixels": "2520x1080",
+      "purpose": "Primary Heist City project hero.",
+      "focal_safe_area": "Vehicle pursuit center-right; broad city grid and empty left third for title."
+    },
+    {
+      "id": "heist_city_criminal",
+      "filename": "heist-city-criminal.webp",
+      "aspect_ratio": "16:9",
+      "minimum_pixels": "1920x1080",
+      "purpose": "Criminal alignment dossier.",
+      "focal_safe_area": "Crew and getaway vehicle centered; preserve upper-left for labels."
+    },
+    {
+      "id": "heist_city_police",
+      "filename": "heist-city-police.webp",
+      "aspect_ratio": "16:9",
+      "minimum_pixels": "1920x1080",
+      "purpose": "Police alignment dossier.",
+      "focal_safe_area": "Lead interceptor and roadblock centered; preserve lower-right for UI copy."
+    },
+    {
+      "id": "heist_city_vigilante",
+      "filename": "heist-city-vigilante.webp",
+      "aspect_ratio": "16:9",
+      "minimum_pixels": "1920x1080",
+      "purpose": "Vigilante alignment dossier.",
+      "focal_safe_area": "Lone operator in center-left; surveillance city depth to the right."
+    },
+    {
+      "id": "studio_manifesto",
+      "filename": "kessoku-studio-manifesto.webp",
+      "aspect_ratio": "16:9",
+      "minimum_pixels": "1920x1080",
+      "purpose": "Studio page closing visual and brand statement.",
+      "focal_safe_area": "Abstract world systems centered; broad negative space for manifesto text."
+    }
+  ]
+}
