@@ -33,6 +33,40 @@ CAMPAIGN_CSS = r"""
   backdrop-filter: blur(16px);
 }
 
+.k-game-card--campaign {
+  background-color: #07090c;
+  background-blend-mode: normal;
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 30px 74px rgba(0,0,0,.34);
+}
+.k-game-card--campaign:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(4,6,9,.08), rgba(4,6,9,.12) 42%, rgba(4,6,9,.82)),
+    linear-gradient(90deg, rgba(4,6,9,.45), transparent 68%);
+}
+.k-game-card--campaign .k-game-grid,
+.k-game-card--campaign .k-game-art {
+  display: none;
+}
+.k-game-card--campaign .k-card-top,
+.k-game-card--campaign .k-card-body,
+.k-game-card--campaign .k-card-index {
+  z-index: 2;
+}
+.k-game-card--campaign .k-card-title,
+.k-game-card--campaign .k-card-copy {
+  text-shadow: 0 5px 26px rgba(0,0,0,.78);
+}
+.k-game-card--campaign .k-tag {
+  background: rgba(4,6,9,.52);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
 .k-mode-panel--campaign {
   position: relative;
   min-height: 610px;
@@ -92,6 +126,9 @@ CAMPAIGN_CSS = r"""
   .k-hero--campaign {
     background-position: 58% center !important;
   }
+  .k-game-card--campaign {
+    background-position: 60% center !important;
+  }
   .k-mode-panel--campaign {
     min-height: 560px;
     background-position: 60% center !important;
@@ -108,6 +145,9 @@ CAMPAIGN_CSS = r"""
   .k-hero--campaign {
     min-height: 720px;
     background-position: 64% center !important;
+  }
+  .k-game-card--campaign {
+    background-position: 66% center !important;
   }
   .k-mode-panel--campaign {
     min-height: 680px;
