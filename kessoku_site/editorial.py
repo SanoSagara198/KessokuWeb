@@ -4,24 +4,26 @@ from __future__ import annotations
 EDITORIAL_CSS = r"""
 <style>
 /* Kessoku V2.3 — editorial presentation layer. */
-html {
-  scroll-timeline-name: --k-page-scroll;
-  scroll-timeline-axis: block;
-}
-.stApp:after {
-  content: "";
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  transform-origin: left;
-  transform: scaleX(0);
-  background: linear-gradient(90deg, #76f3ff, #f4f2eb 48%, #ffb84d);
-  box-shadow: 0 0 18px rgba(118,243,255,.42);
-  animation: kReadingProgress linear;
-  animation-timeline: --k-page-scroll;
+@supports (animation-timeline: scroll()) {
+  html {
+    scroll-timeline-name: --k-page-scroll;
+    scroll-timeline-axis: block;
+  }
+  .stApp:after {
+    content: "";
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform-origin: left;
+    transform: scaleX(0);
+    background: linear-gradient(90deg, #76f3ff, #f4f2eb 48%, #ffb84d);
+    box-shadow: 0 0 18px rgba(118,243,255,.42);
+    animation: kReadingProgress linear;
+    animation-timeline: --k-page-scroll;
+  }
 }
 .k-world-marquee {
   position: relative;
