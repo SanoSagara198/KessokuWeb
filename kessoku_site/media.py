@@ -51,7 +51,7 @@ def campaign_asset(filename: str) -> bytes | None:
 
 
 def suppress_next_campaign_image(filename: str) -> None:
-    """Suppress one legacy ``st.image`` call after media becomes a background."""
+    """Suppress exactly one following legacy image when it duplicates a hero."""
 
     st._kessoku_suppress_next_campaign_image = filename
 
@@ -65,12 +65,17 @@ def install_media_bridge() -> None:
     original_image: Callable[..., Any] = st.image
 
     def campaign_aware_image(image: Any, *args: Any, **kwargs: Any) -> Any:
+        suppressed_filename = getattr(
+            st, "_kessoku_suppress_next_campaign_image", None
+        )
+        if suppressed_filename is not None:
+            delattr(st, "_kessoku_suppress_next_campaign_image")
+
         if isinstance(image, (bytes, bytearray, memoryview)):
             raw = bytes(image)
             filename = _PROCEDURAL_TO_MEDIA.get(hashlib.sha256(raw).hexdigest())
             if filename:
-                if getattr(st, "_kessoku_suppress_next_campaign_image", None) == filename:
-                    delattr(st, "_kessoku_suppress_next_campaign_image")
+                if suppressed_filename == filename:
                     return None
                 replacement = campaign_asset(filename)
                 if replacement:
