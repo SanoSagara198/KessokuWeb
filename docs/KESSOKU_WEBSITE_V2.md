@@ -38,244 +38,205 @@ Kessoku is restrained, geometric, editorial, and premium.
 - Accent: electric cyan with controlled warning red.
 - Visual references: tactical overlays, operation codes, scan lines, arena diagrams, weapon silhouettes.
 - Emotional target: speed, pressure, precision, teamwork.
-- Copy should focus on player action, not implementation terminology.
+- Public content must explain the player fantasy, objective, tactical phases, shared combat authority and mode-specific pressure.
 
 ### 3.3 Heist City
 
-- Accent: amber, asphalt, police blue, selective criminal red.
-- Visual references: street grids, dispatch displays, pursuit routes, surveillance, faction dossiers.
-- Emotional target: opportunity, escalation, pursuit, ambiguity.
-- Each alignment must alter the page's visual and information state.
+- Accent: amber, criminal red, police blue and vigilante green.
+- Visual references: street grids, surveillance, pursuit routes, dispatch language, evidence, infrastructure and vehicle movement.
+- Emotional target: opportunity, escalation, prediction, consequence.
+- Public content must explain the shared city, three alignments, pursuit doctrine, evidence, progression and systemic response.
 
 ## 4. Information architecture
 
 ### Home
 
-- Cinematic Kessoku hero.
-- Two large project showcases.
-- Studio manifesto.
-- High-level development signal.
-- Final playtest/social CTA once official destinations exist.
+- Kessoku hero and portfolio statement
+- factual structural statistics
+- project showcases
+- interactive world comparison
+- studio manifesto
+- public development signal
 
 ### Super Soldiers
 
-- Game hero and approved gameplay media.
-- Combat pillars.
-- 5v5 Arena / City of Zombies operation selector.
-- Mode facts and tactical profile.
-- Character, class, weapon, and ability modules when content is approved.
-- Screenshots or short gameplay loops.
-- Public roadmap and playtest CTA.
+- cinematic hero and project art
+- long-form experience statement
+- six design pillars
+- operation selector
+- tactical profile
+- five-stage player loop
+- combat-pressure laboratory
+- system dossiers
+- public authority topology
+- roadmap
 
 ### Heist City
 
-- City hero and approved gameplay media.
-- Living-city pillars.
-- Criminal / Police / Vigilante selector.
-- Driving, pursuit, hacking, progression, and wanted-system modules.
-- Interactive city/pursuit visualization.
-- Screenshots, city map, and faction media.
-- Public roadmap and playtest CTA.
+- cinematic hero and project art
+- long-form living-city statement
+- six design pillars
+- alignment dossiers
+- alignment progression and consequences
+- five-stage player loops
+- system dossiers
+- 2D pursuit visualization
+- 3D synthetic city grid
+- proportional response simulator
+- 24-skill progression catalog
+- roadmap
 
 ### Studio
 
-- Studio statement.
-- Operating principles.
-- Technology stack at a high level.
-- Contact, press, and social destinations after confirmation.
+- Kessoku operating model
+- six architectural principles
+- public system topology
+- package-responsibility catalog
+- truthful contact state
 
-## 5. Visual system
+## 5. Interaction policy
+
+Every interaction must do one of the following:
+
+- compare player roles
+- expose a tactical or systemic relationship
+- explain progression
+- show consequence
+- clarify architecture
+
+Interactions must not exist solely to make the page move. Charts and simulators are design communication instruments, not live telemetry.
+
+## 6. Content model
+
+The site uses immutable Pydantic models for:
+
+- games
+- modes
+- alignments
+- metrics
+- story beats
+- system detail blocks
+- skill categories and skills
+- public development updates
+
+Long-form descriptions are organized around:
+
+- fantasy
+- objective
+- repeated loop
+- progression
+- methods
+- consequences
+- system ownership
+
+This structure supports future localization and prevents page layout code from becoming the source of product truth.
+
+## 7. Visual system
 
 ### Typography
 
-Use three roles:
+- Display typography carries the identity.
+- Body typography prioritizes long-form readability.
+- Monospace is reserved for system labels, codes and metadata.
+- Uppercase is not applied to all prose.
 
-- Display: compressed, expressive, and used sparingly for game names and hero statements.
-- Body: neutral sans-serif with excellent mobile readability.
-- Technical labels: monospace or tracked uppercase for metadata only.
+### Layout
 
-Do not use uppercase for every paragraph or control. Hierarchy depends on contrast between display, body, and metadata.
+The page alternates between:
 
-### Spacing
+- full-width hero moments
+- editorial splits
+- stat rails
+- interactive visualizations
+- compact feature grids
+- five-stage story sequences
+- expandable system dossiers
 
-- Desktop content width: approximately 1,280–1,420 px.
-- Hero height: 70–80 viewport height where practical.
-- Major section spacing: 64–128 px depending on viewport.
-- Card gaps: 12–20 px.
-- Mobile edge padding: 16 px minimum.
+The site must avoid a continuous wall of equally weighted cards.
 
-### Components
+### Motion
 
-- Sticky or persistent navigation with a compact mobile layout.
-- Full-bleed or near-full-width game media.
-- Editorial project panels rather than dashboard cards.
-- Segmented mode/faction controls.
-- Media-backed information modules.
-- Distinct CTAs with game-specific accents.
-- Visible keyboard focus and reduced-motion behavior.
+- slow orbit and signal motion
+- subtle hover elevation
+- restrained chart transitions
+- no mandatory animation for comprehension
+- complete reduced-motion override
 
-## 6. Interaction system
+## 8. Accessibility
 
-Implemented in the initial V2 branch:
+- Maintain keyboard-visible focus.
+- Preserve readable contrast.
+- Do not encode meaning only with color.
+- Keep descriptions available outside charts.
+- Stack multi-column structures on mobile.
+- Disable or reduce motion when requested.
+- Avoid hover-only essential content.
 
-- Query-string-backed route state.
-- Horizontal option menu.
-- Super Soldiers mode selector.
-- Heist City alignment selector.
-- Plotly radar profiles.
-- Interactive pursuit progression.
-- Altair roadmap.
-- Local Lottie signal animation.
-- Cached procedural media generation.
+## 9. Performance and runtime
 
-Future interactions:
+- Procedural media is cached.
+- No remote API is required to render a page.
+- No analytics SDK is embedded.
+- PyDeck uses a synthetic grid with no external map style.
+- Plotly and Altair figures remain bounded in size.
+- No unbounded dataframe or live game-server query enters the public site.
 
-- Full-screen media viewer.
-- Short muted gameplay loops with poster fallback.
-- Interactive Heist City district map.
-- Devlog filtering.
-- Playtest registration form.
-- Optional lightweight analytics.
+## 10. Dependency responsibilities
 
-## 7. Python implementation architecture
+- Streamlit: runtime, layout, state and deployment.
+- streamlit-option-menu: compact portfolio navigation.
+- streamlit-extras: narrowly scoped CTA styling.
+- streamlit-lottie: local restrained motion.
+- Plotly: tactical, pursuit, doctrine, topology and skill visualizations.
+- Altair and Pandas: public roadmap presentation.
+- PyDeck: synthetic 3D city volume.
+- NetworkX: deterministic public topology layout.
+- NumPy and Pillow: cached procedural WebP art direction.
+- Pydantic: immutable validated content.
 
-### Streamlit
+## 11. Media policy
 
-Owns application composition, state, caching, deployment, and responsive content flow.
+The procedural posters are placeholders. They must eventually be replaced with approved:
 
-### streamlit-option-menu
+- Kessoku wordmark
+- Super Soldiers key art
+- Heist City key art
+- screenshots
+- short muted gameplay loops
+- mode and alignment icons
+- Open Graph image
 
-Provides compact portfolio navigation while the project remains inside one Streamlit entry point.
+Do not invent Roblox, Discord, YouTube, press, playtest or social URLs.
 
-### streamlit-extras
+## 12. Public-claim policy
 
-Provides scoped component styling without globally coupling every button to one visual treatment.
+The site may publish structural facts represented by the content model, such as two projects, two Super Soldiers operations, three Heist City alignments and a 24-node progression design.
 
-### streamlit-lottie
+The site must not publish fabricated:
 
-Provides a lightweight local signal animation without loading remote animation assets.
+- concurrent users
+- retention
+- revenue
+- release dates
+- performance claims
+- live balance data
+- implementation status not supported by the projects
 
-### Plotly
+## 13. Definition of done
 
-Used for game-state visualizations requiring hover and dynamic updates:
+Before merge:
 
-- Tactical profile radar.
-- Heist City pursuit simulation.
+- all four routes render
+- navigation survives refresh
+- all selectors and sliders update correctly
+- Plotly, Altair and PyDeck render on Community Cloud
+- no deprecated `use_container_width` calls remain
+- mobile layout is reviewed
+- reduced-motion behavior is reviewed
+- long copy is not clipped
+- procedural media is identified as temporary
+- no unsupported external links or product claims are present
 
-### Altair
+## 14. V2.1 extension
 
-Used for compact declarative development-track visualization.
-
-### Pandas and NumPy
-
-Used to construct visualization data and deterministic procedural layouts.
-
-### Pillow
-
-Generates cached local WebP art-direction placeholders until approved key art and screenshots are supplied.
-
-### Pydantic
-
-Validates all game, mode, alignment, and metric content at import time. Invalid content must fail early rather than render partially.
-
-## 8. Performance budget
-
-- Initial Python dependencies should remain below the level that materially harms Streamlit cold start.
-- Procedural images must be cached.
-- No high-frequency autorefresh loop.
-- No continuous server-side animation reruns.
-- Prefer CSS or client-rendered Lottie motion.
-- Approved images should use WebP or AVIF where browser support permits.
-- Hero images should normally remain below 500 KB.
-- Gallery images should be lazy-loaded or rendered only on the active view.
-- Avoid loading large datasets, maps, or external APIs on the landing page.
-
-## 9. Accessibility
-
-- Maintain WCAG AA contrast for body copy and controls.
-- Preserve visible keyboard focus.
-- Do not encode meaning by color alone.
-- Respect `prefers-reduced-motion`.
-- Keep body copy at readable sizes on narrow mobile screens.
-- Provide alt text for every final screenshot and piece of key art.
-- Captions or transcripts are required for trailers with meaningful audio.
-
-## 10. Content policy
-
-Public copy should describe player experience. Internal architecture terminology belongs in the Studio section, devlogs, or technical documentation.
-
-Preferred:
-
-> Every chase, shot and collision belongs to the same living city.
-
-Avoid as primary marketing copy:
-
-> All gameplay state is processed by a deterministic fixed-step server-authority rail.
-
-Both statements can be true; only the first sells the fantasy.
-
-## 11. Required approved assets
-
-Priority 0:
-
-- Kessoku logo and wordmark.
-- Super Soldiers hero screenshot or key art.
-- Heist City hero screenshot or key art.
-- Favicon and Open Graph image.
-
-Priority 1:
-
-- Three to six screenshots per game.
-- One short muted gameplay loop per game.
-- Super Soldiers mode art.
-- Heist City alignment art.
-
-Priority 2:
-
-- Character/class art.
-- Weapon/ability icons.
-- City map or district diagram.
-- Press kit assets.
-
-## 12. Delivery phases
-
-### Phase A — implemented in this branch
-
-- Modular codebase.
-- New visual system.
-- Interactive game pages.
-- Data validation.
-- Procedural placeholder media.
-- Responsive and reduced-motion support.
-- Updated dependencies and documentation.
-
-### Phase B — approved media integration
-
-- Replace procedural posters.
-- Add logos and favicon.
-- Add screenshot galleries.
-- Add short video loops.
-- Tune copy against actual gameplay visuals.
-
-### Phase C — publishing surface
-
-- Add official Roblox, Discord, YouTube, press, and playtest URLs.
-- Add devlog content model.
-- Add Open Graph metadata and custom domain.
-- Add privacy terms if user data is collected.
-
-### Phase D — frontend migration decision
-
-Remain on Streamlit while the site is primarily a portfolio and interactive product prototype. Re-evaluate Astro or Next.js when SEO, advanced page transitions, large editorial archives, structured analytics, or highly controlled browser rendering become business requirements.
-
-## 13. Definition of done for V2
-
-- The site communicates both games within three seconds.
-- Each game has a distinct identity.
-- Navigation works on desktop and mobile.
-- Interactive controls materially change the content state.
-- No invented links or release claims exist.
-- The app starts cleanly on Python 3.12.
-- Dependencies are pinned to compatible major versions.
-- Procedural assets are cached.
-- The branch has a documented replacement path for all placeholder media.
+The detailed V2.1 feature, content and validation specification is stored in `docs/KESSOKU_WEBSITE_V2_1_FEATURES.md`.
