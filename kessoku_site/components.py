@@ -97,7 +97,7 @@ def action_button(label: str, key: str, accent: str) -> bool:
         button:hover {{ background:{accent}18!important; border-color:{accent}!important; }}
         """,
     ):
-        return st.button(label, key=key, use_container_width=True)
+        return st.button(label, key=key, width="stretch")
 
 
 def footer() -> None:
