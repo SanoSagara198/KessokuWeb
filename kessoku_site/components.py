@@ -7,6 +7,7 @@ import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 
 from .campaign import CAMPAIGN_CSS
+from .editorial import EDITORIAL_CSS
 from .media import campaign_asset, suppress_next_campaign_image
 from .models import DetailBlock, Game, StoryBeat
 from .polish import POLISH_CSS
@@ -32,6 +33,46 @@ _PANEL_MEDIA = {
     "VIGILANTE": "heist-city-vigilante.webp",
 }
 
+_HERO_METADATA: dict[str, tuple[tuple[str, str], ...]] = {
+    "WORLDS WITH CONSEQUENCE.": (
+        ("PORTFOLIO", "02 ACTIVE WORLDS"),
+        ("DISCIPLINE", "SERVER-OWNED TRUTH"),
+        ("STUDIO", "ARGENTINA"),
+        ("STATE", "IN DEVELOPMENT"),
+    ),
+    "SUPER SOLDIERS": (
+        ("FORMAT", "5V5 + COOPERATIVE PVE"),
+        ("PRIMARY FEEL", "PRESSURE / PRECISION"),
+        ("PLATFORM", "ROBLOX / MOBILE FIRST"),
+        ("STATE", "AUTHORITY BETA"),
+    ),
+    "HEIST CITY": (
+        ("FORMAT", "SYSTEMIC OPEN WORLD"),
+        ("PRIMARY FEEL", "OPPORTUNITY / CONSEQUENCE"),
+        ("WORLD", "SHARED CRIME + LAW"),
+        ("STATE", "CITY SYSTEMS ALPHA"),
+    ),
+    "KESSOKU": (
+        ("MODEL", "INDEPENDENT STUDIO"),
+        ("SPECIALTY", "BOUNDED SIMULATION"),
+        ("PRINCIPLE", "ONE WORLD / ONE TRUTH"),
+        ("LOCATION", "ARGENTINA"),
+    ),
+}
+
+_GAME_SIGNATURES: dict[str, tuple[tuple[str, str], ...]] = {
+    "super-soldiers": (
+        ("PLAYER ROLE", "Elite combatant inside a readable tactical team."),
+        ("CORE RHYTHM", "Acquire space, commit, convert advantage, reset."),
+        ("SYSTEM PROMISE", "Players and bots resolve through one combat truth."),
+    ),
+    "heist-city": (
+        ("PLAYER ROLE", "Criminal, police officer, or vigilante in one city."),
+        ("CORE RHYTHM", "Read the grid, create pressure, escape or contain."),
+        ("SYSTEM PROMISE", "Traffic, evidence, pursuit, and missions remember."),
+    ),
+}
+
 
 def _campaign_background(filename: str | None, *, position: str = "center") -> str:
     if not filename:
@@ -50,14 +91,52 @@ def _campaign_background(filename: str | None, *, position: str = "center") -> s
     )
 
 
+def _hero_metadata(items: tuple[tuple[str, str], ...]) -> str:
+    body = "".join(
+        "<div class='k-hero-meta-item'>"
+        f"<div class='k-hero-meta-label'>{escape(label)}</div>"
+        f"<div class='k-hero-meta-value'>{escape(value)}</div>"
+        "</div>"
+        for label, value in items
+    )
+    return f"<div class='k-hero-meta'>{body}</div>"
+
+
+def _project_signature(game: Game) -> str:
+    items = _GAME_SIGNATURES.get(game.slug)
+    if not items:
+        return ""
+    body = "".join(
+        "<div class='k-project-signature-item'>"
+        f"<div class='k-project-signature-label'>{escape(label)}</div>"
+        f"<div class='k-project-signature-value'>{escape(value)}</div>"
+        "</div>"
+        for label, value in items
+    )
+    return f"<div class='k-project-signature' style='--accent:{game.accent}'>{body}</div>"
+
+
 def topbar() -> None:
     st.markdown(POLISH_CSS, unsafe_allow_html=True)
     st.markdown(CAMPAIGN_CSS, unsafe_allow_html=True)
+    st.markdown(EDITORIAL_CSS, unsafe_allow_html=True)
     st.markdown(
         """
         <div class="k-topline">
           <div class="k-brand"><div class="k-mark"><span>K</span></div><div><div class="k-word">KESSOKU</div><div class="k-sub">SYSTEMIC GAMES ON ROBLOX</div></div></div>
           <div class="k-live"><span class="k-dot"></span> DEVELOPMENT SIGNAL ACTIVE</div>
+        </div>
+        <div class="k-world-marquee" aria-hidden="true">
+          <div class="k-world-marquee-track">
+            <span>SUPER SOLDIERS / TACTICAL PRESSURE</span>
+            <span>HEIST CITY / URBAN CONSEQUENCE</span>
+            <span>SERVER AUTHORITY / SHARED TRUTH</span>
+            <span>KESSOKU / ARGENTINA</span>
+            <span>SUPER SOLDIERS / TACTICAL PRESSURE</span>
+            <span>HEIST CITY / URBAN CONSEQUENCE</span>
+            <span>SERVER AUTHORITY / SHARED TRUTH</span>
+            <span>KESSOKU / ARGENTINA</span>
+          </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -70,6 +149,7 @@ def hero(title: str, eyebrow: str, lede: str, accent: str, code: str) -> None:
     media_class = " k-hero--campaign" if media_style else ""
     if media_style and media_filename and suppress_legacy:
         suppress_next_campaign_image(media_filename)
+    metadata = _hero_metadata(_HERO_METADATA.get(title, ()))
     st.markdown(
         f"""
         <section class="k-hero{media_class}" style="--hero-accent:{accent};{media_style}">
@@ -84,6 +164,7 @@ def hero(title: str, eyebrow: str, lede: str, accent: str, code: str) -> None:
             <div class="k-signal"><div class="k-signal-line"></div><div class="k-signal-label"><span>WORLD STATE / VERIFIED</span><span>CLIENT / PRESENTATION</span></div></div>
           </div>
         </section>
+        {metadata}
         """,
         unsafe_allow_html=True,
     )
@@ -113,6 +194,7 @@ def game_card(game: Game, number: str) -> None:
     tags = "".join(f'<span class="k-tag">{escape(tag)}</span>' for tag in (game.status, game.category, "ROBLOX"))
     media_style = _campaign_background(_CARD_MEDIA.get(game.title), position="center")
     media_class = " k-game-card--campaign" if media_style else ""
+    signature = _project_signature(game)
     st.markdown(
         f"""
         <article class="k-game-card{media_class}" style="--accent:{game.accent};--soft:rgba({game.accent_rgb[0]},{game.accent_rgb[1]},{game.accent_rgb[2]},.12);{media_style}">
@@ -120,6 +202,7 @@ def game_card(game: Game, number: str) -> None:
           <div class="k-card-top"><span>PROJECT / {number}</span><span>{escape(game.status)}</span></div>
           <div class="k-card-body"><h3 class="k-card-title">{escape(game.title)}</h3><p class="k-card-copy">{escape(game.pitch)}</p><div class="k-tags">{tags}</div></div>
         </article>
+        {signature}
         """,
         unsafe_allow_html=True,
     )
@@ -198,4 +281,27 @@ def update_card(state: str, project: str, title: str, description: str) -> None:
 
 
 def footer() -> None:
-    st.markdown('<footer class="k-footer"><span>© 2026 KESSOKU GAMES</span><span>ONE WORLD / ONE TRUTH / MANY PLAYERS</span></footer>', unsafe_allow_html=True)
+    st.markdown(
+        """
+        <footer class="k-footer-pro">
+          <div>
+            <div class="k-footer-mark">KESSOKU<br>GAMES.</div>
+            <div class="k-footer-copy">Independent Roblox worlds built around readable consequence, bounded simulation, and one shared source of gameplay truth.</div>
+          </div>
+          <div>
+            <div class="k-footer-heading">ACTIVE WORLDS</div>
+            <div class="k-footer-line">Super Soldiers</div>
+            <div class="k-footer-line">Heist City</div>
+            <div class="k-footer-line">Studio systems</div>
+          </div>
+          <div>
+            <div class="k-footer-heading">PUBLIC STATUS</div>
+            <div class="k-footer-line">Development active</div>
+            <div class="k-footer-line">Canonical links pending</div>
+            <div class="k-footer-line">No invented release dates</div>
+          </div>
+          <div class="k-footer-base"><span>© 2026 KESSOKU GAMES / ARGENTINA</span><span>ONE WORLD / ONE TRUTH / MANY PLAYERS</span></div>
+        </footer>
+        """,
+        unsafe_allow_html=True,
+    )
