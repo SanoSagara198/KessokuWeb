@@ -7,7 +7,7 @@ import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 
 from .campaign import CAMPAIGN_CSS
-from .media import campaign_asset
+from .media import campaign_asset, suppress_next_campaign_image
 from .models import DetailBlock, Game, StoryBeat
 from .polish import POLISH_CSS
 
@@ -54,8 +54,11 @@ def topbar() -> None:
 
 
 def hero(title: str, eyebrow: str, lede: str, accent: str, code: str) -> None:
-    media_style = _campaign_background(_HERO_MEDIA.get(title), position="center 42%")
+    media_filename = _HERO_MEDIA.get(title)
+    media_style = _campaign_background(media_filename, position="center 42%")
     media_class = " k-hero--campaign" if media_style else ""
+    if media_style and media_filename:
+        suppress_next_campaign_image(media_filename)
     st.markdown(
         f"""
         <section class="k-hero{media_class}" style="--hero-accent:{accent};{media_style}">
