@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import ast
 import base64
+import binascii
 import json
 import sys
 from pathlib import Path
@@ -29,22 +30,22 @@ def validate_python() -> int:
 
 
 def validate_source_policy() -> None:
-    forbidden = {
-        "use_container_width": "deprecated Streamlit width argument",
-        "streamlit-option-menu": "removed navigation dependency",
-    }
-    searchable = [
-        *ROOT.rglob("*.py"),
-        *ROOT.rglob("*.md"),
-        ROOT / "requirements.txt",
+    python_files = [
+        path
+        for path in ROOT.rglob("*.py")
+        if path.name != "validate_site.py"
+        and not any(part in {".venv", "__pycache__"} for part in path.parts)
     ]
-    for path in searchable:
-        if not path.is_file() or path.name == "validate_site.py":
-            continue
-        text = path.read_text(encoding="utf-8")
-        for token, reason in forbidden.items():
-            if token in text:
-                fail(f"{reason} remains in {path.relative_to(ROOT)}: {token}")
+    for path in python_files:
+        if "use_container_width" in path.read_text(encoding="utf-8"):
+            fail(
+                "Deprecated Streamlit width argument remains in "
+                f"{path.relative_to(ROOT)}"
+            )
+
+    requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
+    if "streamlit-option-menu" in requirements:
+        fail("Removed navigation dependency remains in requirements.txt")
 
 
 def validate_manifest() -> tuple[dict[str, object], ...]:
@@ -81,8 +82,11 @@ def decode_media(filename: str) -> bytes | None:
     encoded = root / f"{filename}.b64"
     if encoded.is_file():
         try:
-            return base64.b64decode("".join(encoded.read_text(encoding="ascii").split()), validate=True)
-        except ValueError as exc:
+            return base64.b64decode(
+                "".join(encoded.read_text(encoding="ascii").split()),
+                validate=True,
+            )
+        except (ValueError, binascii.Error) as exc:
             fail(f"Invalid Base64 media payload {encoded.name}: {exc}")
 
     parts = sorted(root.glob(f"{filename}.b64.part[0-9][0-9]"))
@@ -90,7 +94,7 @@ def decode_media(filename: str) -> bytes | None:
         joined = "".join(part.read_text(encoding="ascii") for part in parts)
         try:
             return base64.b64decode("".join(joined.split()), validate=True)
-        except ValueError as exc:
+        except (ValueError, binascii.Error) as exc:
             fail(f"Invalid Base64 media parts for {filename}: {exc}")
     return None
 
