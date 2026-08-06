@@ -50,6 +50,12 @@ def campaign_asset(filename: str) -> bytes | None:
     return None
 
 
+def suppress_next_campaign_image(filename: str) -> None:
+    """Suppress one legacy ``st.image`` call after media becomes a background."""
+
+    st._kessoku_suppress_next_campaign_image = filename
+
+
 def install_media_bridge() -> None:
     """Make existing ``st.image`` calls prefer approved campaign media."""
 
@@ -63,6 +69,9 @@ def install_media_bridge() -> None:
             raw = bytes(image)
             filename = _PROCEDURAL_TO_MEDIA.get(hashlib.sha256(raw).hexdigest())
             if filename:
+                if getattr(st, "_kessoku_suppress_next_campaign_image", None) == filename:
+                    delattr(st, "_kessoku_suppress_next_campaign_image")
+                    return None
                 replacement = campaign_asset(filename)
                 if replacement:
                     image = replacement
