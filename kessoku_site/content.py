@@ -2,14 +2,17 @@ from __future__ import annotations
 
 from .models import (
     Alignment,
+    ArchetypeResult,
     DetailBlock,
     DevelopmentUpdate,
+    DevlogEntry,
     Game,
     Metric,
     Mode,
     Skill,
     SkillCategory,
     StoryBeat,
+    WeaponSpec,
 )
 
 
@@ -387,3 +390,238 @@ DEVELOPMENT_UPDATES = (
     DevelopmentUpdate(state="NEXT", project="HEIST CITY", title="Pursuit intelligence", description="Expand predictive interception, containment roles, reckless tactics and recovery behavior on the city grid."),
     DevelopmentUpdate(state="PLANNED", project="KESSOKU", title="Public media pass", description="Replace procedural art direction with approved screenshots, logos, key art and short gameplay loops."),
 )
+
+
+WEAPONS = (
+    WeaponSpec(
+        key="arc-4",
+        name="ARC-4 CARBINE",
+        role="Standard Tactical Assault",
+        caliber="5.56x45mm",
+        rpm=650,
+        mag_size=30,
+        reload_sec=2.1,
+        base_damage=28.0,
+        head_mult=1.75,
+        optimal_range=24,
+        max_range=55,
+        recoil_vert=2.8,
+        recoil_horiz=1.2,
+        description="Balanced mid-range platform with predictable climb and tight first-shot accuracy. The core squad workhorse.",
+    ),
+    WeaponSpec(
+        key="valkyrie-7",
+        name="VALKYRIE-7 DMR",
+        role="Designated Marksman",
+        caliber="7.62x51mm",
+        rpm=280,
+        mag_size=15,
+        reload_sec=2.6,
+        base_damage=54.0,
+        head_mult=2.10,
+        optimal_range=42,
+        max_range=85,
+        recoil_vert=5.4,
+        recoil_horiz=0.8,
+        description="High-caliber precision rifle punishing exposed targets. Rewards trigger discipline and defensive sightlines.",
+    ),
+    WeaponSpec(
+        key="specter-9",
+        name="SPECTER-9 SMG",
+        role="Close-Quarters Infiltration",
+        caliber="9x19mm Parabellum",
+        rpm=880,
+        mag_size=32,
+        reload_sec=1.7,
+        base_damage=21.0,
+        head_mult=1.50,
+        optimal_range=14,
+        max_range=35,
+        recoil_vert=2.1,
+        recoil_horiz=2.4,
+        description="Rapid-cycling submachine gun dominating room breaches. High horizontal drift requires close containment.",
+    ),
+    WeaponSpec(
+        key="breaker-12",
+        name="BREAKER-12 TACTICAL",
+        role="Point-Blank Breach Shotgun",
+        caliber="12 Gauge 00 Buck",
+        rpm=140,
+        mag_size=8,
+        reload_sec=3.2,
+        base_damage=96.0,
+        head_mult=1.35,
+        optimal_range=8,
+        max_range=20,
+        recoil_vert=7.5,
+        recoil_horiz=1.5,
+        description="Devastating point-blank stopping power. Significant pellet spread and steep drop-off demand aggressive positioning.",
+    ),
+)
+
+
+DEVLOG_ENTRIES = (
+    DevlogEntry(
+        version="v0.8.4",
+        date="AUG 2026",
+        category="NETCODE",
+        title="Server Rewind Buffer & 60Hz Tick Authority",
+        summary="Transitioned hit validation from client-side confirmation to an authoritative server-side history rewind buffer.",
+        highlights=(
+            "Implemented 250ms circular state history on the server tick loop.",
+            "Client intent timestamp verification with anti-clock-drift limits.",
+            "Completely eliminated peekers-advantage hit spoofing under 120ms latency.",
+        ),
+    ),
+    DevlogEntry(
+        version="v0.8.2",
+        date="JUL 2026",
+        category="COMBAT",
+        title="Capsule Hitbox Validation & Mobile Thumb-Zone Restructure",
+        summary="Refined character collision geometry into multi-segmented capsules for precise limbs, torso, and head detection.",
+        highlights=(
+            "Independent limb damage multipliers (Head 1.75x, Torso 1.0x, Limbs 0.75x).",
+            "Added touch control deadzone calibration for mobile tablet players.",
+            "Streamlined visual reload and ability cooldown indicators in the HUD.",
+        ),
+    ),
+    DevlogEntry(
+        version="v0.7.9",
+        date="JUN 2026",
+        category="TRAFFIC AI",
+        title="Top-Down Interception Vectoring & Grid Pathfinding",
+        summary="Replaced linear pursuit breadcrumbs in Heist City with multi-agent predictive corridor zoning.",
+        highlights=(
+            "Police patrol units now calculate intercept vectors based on target speed and turning angles.",
+            "Added dynamic roadblock barricades at high-probability street intersections.",
+            "Autonomous traffic flow reroutes around active collision and pursuit sectors.",
+        ),
+    ),
+    DevlogEntry(
+        version="v0.7.5",
+        date="MAY 2026",
+        category="BALANCE",
+        title="Recoil Reset Decay & Armor Degradation Rules",
+        summary="Standardized weapon recoil reset times and introduced tiered body armor durability depletion.",
+        highlights=(
+            "First-shot accuracy reset window reduced by 15% across all tactical carbines.",
+            "Armor durability now absorbs 40% kinetic impact before shattering.",
+            "Zombie swarm composition now scales dynamically with remaining barricade integrity.",
+        ),
+    ),
+    DevlogEntry(
+        version="v0.7.1",
+        date="APR 2026",
+        category="MOBILE UI",
+        title="Dynamic Touch Layout Scaling & High-Contrast Silhouettes",
+        summary="Optimized visual readability for low-end mobile devices with adaptive rendering budgets.",
+        highlights=(
+            "High-contrast outline shaders for enemy combatants at distances >30m.",
+            "Adjustable on-screen action button opacity and scale presets.",
+            "Maintained 60 FPS performance on target mobile devices.",
+        ),
+    ),
+)
+
+
+ARCHETYPES = {
+    "hacking": ArchetypeResult(
+        name="CYBER INFILTRATOR",
+        title="Network & Grid Specialist",
+        description="Dominates urban infrastructure, disables traffic signals, and loops security feeds to control engagement tempo without firing a shot.",
+        accent="#76F3FF",
+        badge="NET_ROOT_ACCESS",
+    ),
+    "combat": ArchetypeResult(
+        name="HEAVY ENFORCER",
+        title="Kinetic Direct Action",
+        description="Relies on disciplined burst fire, tactical armor cycling, and breach momentum to overpower opposition under extreme combat load.",
+        accent="#FF764D",
+        badge="BALLISTIC_DOMINANCE",
+    ),
+    "driving": ArchetypeResult(
+        name="GHOST WHEELMAN",
+        title="High-Mobility Interceptor",
+        description="Master of traction limits, pursuit evasion, and vehicle impact physics. Converts every urban block into an interception corridor or escape line.",
+        accent="#FFB84D",
+        badge="GRID_EVASION_SPECIALIST",
+    ),
+    "intelligence": ArchetypeResult(
+        name="MASTERMIND TACTICIAN",
+        title="Predictive Information Broker",
+        description="Operates on asymmetric information, recognizing threat patterns, predicting police response doctrine, and fabricating false signal trails.",
+        accent="#9DE4B2",
+        badge="ASYNCHRONOUS_INTEL",
+    ),
+    "balanced": ArchetypeResult(
+        name="STREET PHANTOM",
+        title="Adaptive Urban Operator",
+        description="A versatile operative balancing infrastructure manipulation, tactical mobility, and sharp engagement discipline across all scenarios.",
+        accent="#F4F2EB",
+        badge="ADAPTIVE_SYNDICATE",
+    ),
+}
+
+
+def calculate_build_archetype(points: dict[str, int]) -> ArchetypeResult:
+    if not points:
+        return ARCHETYPES["balanced"]
+    sorted_items = sorted(points.items(), key=lambda item: item[1], reverse=True)
+    top_cat, top_val = sorted_items[0]
+    second_val = sorted_items[1][1] if len(sorted_items) > 1 else 0
+    if top_val == 0 or (top_val - second_val <= 1 and top_val <= 3):
+        return ARCHETYPES["balanced"]
+    return ARCHETYPES.get(top_cat, ARCHETYPES["balanced"])
+
+
+I18N = {
+    "EN": {
+        "nav_home": "Home",
+        "nav_super_soldiers": "Super Soldiers",
+        "nav_heist_city": "Heist City",
+        "nav_studio": "Studio",
+        "hero_title": "WORLDS WITH CONSEQUENCE.",
+        "hero_eyebrow": "KESSOKU GAMES / ARGENTINA",
+        "hero_lede": "We build Roblox experiences where combat, vehicles, bots and the city obey the same rules. Two worlds. One engineering standard.",
+        "badge_live": "DEVELOPMENT SIGNAL ACTIVE",
+        "studio_manifesto": "SECURE ENOUGH TO TRUST.<br>FAST ENOUGH TO FEEL.<br><em>SYSTEMIC ENOUGH TO SURPRISE.</em>",
+        "explore_ss": "EXPLORE SUPER SOLDIERS",
+        "enter_hc": "ENTER HEIST CITY",
+        "active_worlds": "ACTIVE WORLDS",
+        "operations": "OPERATIONS",
+        "alignments": "ALIGNMENTS",
+        "shared_rule": "SHARED RULE",
+        "hud_theme": "HUD THEME",
+        "sound_effects": "TACTICAL AUDIO",
+        "scanlines": "CRT SCANLINES",
+        "lang_switch": "LANGUAGE",
+        "command_palette": "COMMAND PALETTE (CTRL+K)",
+        "playtest_cta": "ENLIST IN PLAYTEST",
+        "devlog_title": "TECHNICAL DEVLOG & DISPATCHES",
+    },
+    "ES": {
+        "nav_home": "Inicio",
+        "nav_super_soldiers": "Super Soldiers",
+        "nav_heist_city": "Heist City",
+        "nav_studio": "Estudio",
+        "hero_title": "MUNDOS CON CONSECUENCIA.",
+        "hero_eyebrow": "KESSOKU GAMES / ARGENTINA",
+        "hero_lede": "Creamos experiencias en Roblox donde el combate, los vehículos, los bots y la ciudad obedecen las mismas reglas. Dos mundos. Un solo estándar de ingeniería.",
+        "badge_live": "SEÑAL DE DESARROLLO ACTIVA",
+        "studio_manifesto": "SEGURO PARA CONFIAR.<br>RÁPIDO PARA SENTIR.<br><em>SISTÉMICO PARA SORPRENDER.</em>",
+        "explore_ss": "EXPLORAR SUPER SOLDIERS",
+        "enter_hc": "INGRESAR A HEIST CITY",
+        "active_worlds": "MUNDOS ACTIVOS",
+        "operations": "OPERACIONES",
+        "alignments": "ALINEACIONES",
+        "shared_rule": "REGLA COMPARTIDA",
+        "hud_theme": "TEMA HUD",
+        "sound_effects": "AUDIO TÁCTICO",
+        "scanlines": "LÍNEAS CRT",
+        "lang_switch": "IDIOMA",
+        "command_palette": "PALETA DE COMANDOS (CTRL+K)",
+        "playtest_cta": "ALISTARSE EN PLAYTEST",
+        "devlog_title": "DEVLOG TÉCNICO Y DESPACHOS",
+    },
+}
+

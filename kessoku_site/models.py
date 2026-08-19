@@ -102,3 +102,44 @@ class Game(BaseModel):
     accent_rgb: tuple[int, int, int]
     status: str
     features: tuple[tuple[str, str], ...]
+
+
+class WeaponSpec(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    key: str
+    name: str
+    role: str
+    caliber: str
+    rpm: int
+    mag_size: int
+    reload_sec: float
+    base_damage: float
+    head_mult: float
+    optimal_range: int
+    max_range: int
+    recoil_vert: float
+    recoil_horiz: float
+    description: str
+
+
+class DevlogEntry(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    version: str
+    date: str
+    category: Literal["NETCODE", "COMBAT", "TRAFFIC AI", "MOBILE UI", "BALANCE"]
+    title: str
+    summary: str
+    highlights: tuple[str, ...]
+
+
+class ArchetypeResult(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    name: str
+    title: str
+    description: str
+    accent: str
+    badge: str
+

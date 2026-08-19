@@ -10,39 +10,51 @@ from streamlit_option_menu import option_menu
 from kessoku_site.components import (
     action_button,
     detail_accordions,
+    devlog_feed_component,
     editorial_panel,
     feature_grid,
     footer,
     game_card,
     hero,
+    hud_controls_bar,
     mode_panel,
+    netcode_lab_component,
+    playtest_enlistment_component,
     roadmap,
     section,
+    skill_planner_component,
     stat_strip,
     story_timeline,
     topbar,
     update_card,
+    weapon_lab_component,
+    web_audio_synthesizer,
 )
 from kessoku_site.content import (
     ALIGNMENTS,
     DEVELOPMENT_UPDATES,
+    DEVLOG_ENTRIES,
     HEIST_CITY,
+    I18N,
     SKILL_CATEGORIES,
     STUDIO_PRINCIPLES,
     SUPER_MODES,
     SUPER_SOLDIERS,
+    WEAPONS,
 )
-from kessoku_site.theme import CSS
+from kessoku_site.theme import get_theme_css
 from kessoku_site.visuals import (
     city_deck,
     city_pursuit_figure,
     combat_pressure_figure,
     metric_radar,
     procedural_poster,
+    pursuit_sandbox_figure,
     response_doctrine_figure,
     roadmap_chart,
     skill_tree_figure,
     system_topology_figure,
+    zombie_escalation_figure,
 )
 
 ROOT = Path(__file__).parent
@@ -54,7 +66,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
     menu_items={"About": "Kessoku Games — systemic Roblox worlds."},
 )
-st.markdown(CSS, unsafe_allow_html=True)
+
+# Session State Initialization
+if "lang" not in st.session_state:
+    st.session_state.lang = "EN"
+if "theme" not in st.session_state:
+    st.session_state.theme = "cyan"
+if "audio" not in st.session_state:
+    st.session_state.audio = True
+if "scanlines" not in st.session_state:
+    st.session_state.scanlines = False
+
+# Inject Theme CSS and Web Audio Synthesizer
+st.markdown(get_theme_css(st.session_state.theme, st.session_state.scanlines), unsafe_allow_html=True)
+web_audio_synthesizer(st.session_state.audio)
 
 
 @st.cache_data(show_spinner=False)
@@ -92,10 +117,16 @@ def navigation() -> str:
             "container": {"padding": "0!important", "background-color": "transparent", "margin-bottom": "1rem"},
             "icon": {"color": "#AEB4BC", "font-size": "14px"},
             "nav-link": {
-                "font-size": "12px", "font-weight": "800", "letter-spacing": ".06em",
-                "text-align": "center", "margin": "0 3px", "padding": "11px 13px",
-                "border": "1px solid rgba(255,255,255,.10)", "border-radius": "999px",
-                "background": "rgba(255,255,255,.025)", "color": "#D9DCE1",
+                "font-size": "12px",
+                "font-weight": "800",
+                "letter-spacing": ".06em",
+                "text-align": "center",
+                "margin": "0 3px",
+                "padding": "11px 13px",
+                "border": "1px solid rgba(255,255,255,.10)",
+                "border-radius": "999px",
+                "background": "rgba(255,255,255,.025)",
+                "color": "#D9DCE1",
             },
             "nav-link-selected": {"background": "#F3F1EA", "color": "#090A0C", "border": "1px solid #F3F1EA"},
         },
@@ -107,10 +138,11 @@ def navigation() -> str:
 
 
 def home() -> None:
+    t = I18N.get(st.session_state.lang, I18N["EN"])
     hero(
-        "WORLDS WITH CONSEQUENCE.",
-        "KESSOKU GAMES / ARGENTINA",
-        "We build Roblox experiences where combat, vehicles, bots and the city obey the same rules. Two worlds. One engineering standard.",
+        t["hero_title"],
+        t["hero_eyebrow"],
+        t["hero_lede"],
         "#F4F2EB",
         "PORTFOLIO / 02<br>SIMULATION / AUTHORITATIVE<br>STATUS / BUILDING",
     )
@@ -121,10 +153,10 @@ def home() -> None:
     )
     stat_strip(
         (
-            ("02", "ACTIVE WORLDS", "Tactical combat and a systemic crime-and-law city."),
-            ("02", "OPERATIONS", "Competitive 5v5 and cooperative survival in Super Soldiers."),
-            ("03", "ALIGNMENTS", "Criminal, police and vigilante roles inside Heist City."),
-            ("01", "SHARED RULE", "The server owns truth; the client renders state and sends intent."),
+            ("02", t["active_worlds"], "Tactical combat and a systemic crime-and-law city."),
+            ("02", t["operations"], "Competitive 5v5 and cooperative survival in Super Soldiers."),
+            ("03", t["alignments"], "Criminal, police and vigilante roles inside Heist City."),
+            ("01", t["shared_rule"], "The server owns truth; the client renders state and sends intent."),
         ),
         "#F4F2EB",
     )
@@ -136,12 +168,13 @@ def home() -> None:
     left, right = st.columns(2, gap="small")
     with left:
         game_card(SUPER_SOLDIERS, "01")
-        if action_button("EXPLORE SUPER SOLDIERS", "home-ss", SUPER_SOLDIERS.accent):
+        if action_button(t["explore_ss"], "home-ss", SUPER_SOLDIERS.accent):
             set_route("Super Soldiers")
     with right:
         game_card(HEIST_CITY, "02")
-        if action_button("ENTER HEIST CITY", "home-hc", HEIST_CITY.accent):
+        if action_button(t["enter_hc"], "home-hc", HEIST_CITY.accent):
             set_route("Heist City")
+
     section(
         "The games are different because their consequences are different.",
         "The shared architecture does not flatten the portfolio. It gives each project enough coherence to express a distinct rhythm, visual language and player role.",
@@ -149,7 +182,7 @@ def home() -> None:
     )
     world = st.segmented_control("World", ["SUPER SOLDIERS", "HEIST CITY"], default="SUPER SOLDIERS", label_visibility="collapsed", width="stretch") or "SUPER SOLDIERS"
     game = SUPER_SOLDIERS if world == "SUPER SOLDIERS" else HEIST_CITY
-    art, copy = st.columns([1.08, .92], gap="large")
+    art, copy = st.columns([1.08, 0.92], gap="large")
     with art:
         st.image(poster(game.accent_rgb, 71 if game.slug == "super-soldiers" else 1987), width="stretch")
     with copy:
@@ -160,12 +193,14 @@ def home() -> None:
             tuple(feature[0] for feature in game.features[:4]),
             game.accent,
         )
+
     section(
         "The world should remain coherent when players push against it.",
         "Security is not the marketing message. Consequence is. Server ownership is the mechanism that lets every chase, shot, collision and decision belong to one living world.",
         "STUDIO / MANIFESTO",
     )
-    st.markdown('<div class="k-manifesto" style="--accent:#76F3FF">SECURE ENOUGH TO TRUST.<br>FAST ENOUGH TO FEEL.<br><em>SYSTEMIC ENOUGH TO SURPRISE.</em></div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="k-manifesto" style="--accent:#76F3FF">{t["studio_manifesto"]}</div>', unsafe_allow_html=True)
+
     section(
         "Development signal.",
         "The public site communicates meaningful direction without exposing unstable internal detail, fake dates or invented release promises.",
@@ -201,12 +236,14 @@ def super_soldiers() -> None:
         ),
         SUPER_SOLDIERS.accent,
     )
+
     section(
         "Built as one combat system, not two disconnected modes.",
         "Arena and survival use the same authoritative rules for damage, movement, cooldowns, bots, score and match state.",
         "SUPER SOLDIERS / PILLARS",
     )
     feature_grid(SUPER_SOLDIERS)
+
     section(
         "Select the operation.",
         "Each mode changes tempo, objectives and pressure while preserving the same combat language. The dossier below describes the player fantasy, objective, encounter rhythm and supporting systems.",
@@ -215,18 +252,27 @@ def super_soldiers() -> None:
     labels = [mode.title for mode in SUPER_MODES]
     selected = st.segmented_control("Operation", labels, default=labels[0], label_visibility="collapsed", width="stretch") or labels[0]
     mode = next(item for item in SUPER_MODES if item.title == selected)
-    panel, chart = st.columns([1.12, .88], gap="large")
+    panel, chart = st.columns([1.12, 0.88], gap="large")
     with panel:
         mode_panel(mode.strapline, mode.title, mode.description, mode.facts, SUPER_SOLDIERS.accent, fantasy=mode.player_fantasy, objective=mode.objective)
-        st_lottie(load_lottie(), height=110, key=f"signal-{mode.key}", speed=.7)
+        st_lottie(load_lottie(), height=110, key=f"signal-{mode.key}", speed=0.7)
     with chart:
         st.plotly_chart(metric_radar(mode.metrics, SUPER_SOLDIERS.accent), width="stretch", config={"displayModeBar": False})
+
     section(
         "The operation unfolds through readable phases.",
         "These phases define the intended player decision sequence. They are not rigid cutscenes; they are the tactical rhythm the systems should consistently create.",
         "SUPER SOLDIERS / PLAYER LOOP",
     )
     story_timeline(mode.loop, SUPER_SOLDIERS.accent)
+
+    section(
+        "Tactical weapon & ballistics laboratory.",
+        "Inspect ballistic performance profiles, simulated dispersion bloom, and time-to-kill curves under varied target armor and precision parameters.",
+        "INTERACTIVE / BALLISTICS LAB",
+    )
+    weapon_lab_component(WEAPONS, SUPER_SOLDIERS.accent)
+
     section(
         "Combat pressure laboratory.",
         "Adjust operation intensity and squad posture to visualize how tactical load can rise while squad capability falls. This is a design profile, not live telemetry.",
@@ -237,7 +283,7 @@ def super_soldiers() -> None:
         intensity = st.slider("Threat intensity", 1, 10, 6, width="stretch")
     with control_b:
         posture = st.segmented_control("Squad posture", ["AGGRESSIVE", "BALANCED", "DEFENSIVE"], default="BALANCED", width="stretch") or "BALANCED"
-    chart_col, metrics_col = st.columns([1.35, .65], gap="large")
+    chart_col, metrics_col = st.columns([1.35, 0.65], gap="large")
     with chart_col:
         st.plotly_chart(combat_pressure_figure(mode.key, intensity, posture, SUPER_SOLDIERS.accent), width="stretch", config={"displayModeBar": False})
     with metrics_col:
@@ -245,29 +291,49 @@ def super_soldiers() -> None:
         st.metric("PEAK TACTICAL LOAD", f"{peak}%", border=True, chart_data=[22, 31, 44, 58, peak], chart_type="line", width="stretch")
         st.metric("POSTURE", posture, border=True, width="stretch")
         st.metric("MODE", mode.title, border=True, width="stretch")
+
+    section(
+        "City of Zombies: outbreak escalation simulator.",
+        "Simulate horde escalation, barricade durability decay, and ammunition exhaustion over 20 survival waves based on squad composition.",
+        "INTERACTIVE / OUTBREAK MODEL",
+    )
+    zc1, zc2, zc3 = st.columns(3, gap="small")
+    with zc1:
+        sq_size = st.slider("Squad Size", 1, 4, 4, width="stretch")
+    with zc2:
+        bar_tier = st.slider("Barricade Reinforcement Tier", 0, 3, 2, width="stretch")
+    with zc3:
+        discipline = st.segmented_control("Ammunition Discipline", ["CONSERVATIVE", "BALANCED", "AGGRESSIVE"], default="BALANCED", width="stretch") or "BALANCED"
+    st.plotly_chart(zombie_escalation_figure(sq_size, bar_tier, discipline, SUPER_SOLDIERS.accent), width="stretch", config={"displayModeBar": False})
+
     section(
         "System dossiers.",
         "The public description can explain why the experience should feel trustworthy without exposing implementation-sensitive detail or turning the page into API documentation.",
         "SUPER SOLDIERS / SYSTEMS",
     )
     detail_accordions(mode.systems, SUPER_SOLDIERS.accent, mode.key)
+
     section(
         "One authoritative topology.",
         "Player and bot intent enter the same fixed simulation. World state is replicated outward for presentation; clients do not feed outcomes back as truth.",
         "SUPER SOLDIERS / AUTHORITY",
     )
     st.plotly_chart(system_topology_figure(SUPER_SOLDIERS.accent), width="stretch", config={"displayModeBar": False})
+
     section(
         "Current development track.",
         "The public roadmap communicates sequence without exposing internal implementation detail or promising dates that are not yet fixed.",
         "SUPER SOLDIERS / ROADMAP",
     )
-    roadmap((
-        ("01", "Server Authority Beta", "ACTIVE"),
-        ("02", "Combat Readability", "ACTIVE"),
-        ("03", "City of Zombies Depth", "NEXT"),
-        ("04", "Public Playtests", "PLANNED"),
-    ), SUPER_SOLDIERS.accent)
+    roadmap(
+        (
+            ("01", "Server Authority Beta", "ACTIVE"),
+            ("02", "Combat Readability", "ACTIVE"),
+            ("03", "City of Zombies Depth", "NEXT"),
+            ("04", "Public Playtests", "PLANNED"),
+        ),
+        SUPER_SOLDIERS.accent,
+    )
 
 
 def _doctrine_text(threat: int, evidence: int, mobility: int) -> tuple[str, str]:
@@ -305,12 +371,14 @@ def heist_city() -> None:
         ),
         HEIST_CITY.accent,
     )
+
     section(
         "A city that reacts instead of merely decorating the map.",
         "Traffic, police, civilians, missions and wanted pressure read the same world state and remain bounded under concurrency.",
         "HEIST CITY / PILLARS",
     )
     feature_grid(HEIST_CITY)
+
     section(
         "Choose where you stand.",
         "The simulation stays shared. Alignment changes the opportunities, information, progression and consequences available to the player.",
@@ -319,41 +387,52 @@ def heist_city() -> None:
     labels = [alignment.title for alignment in ALIGNMENTS]
     selected = st.segmented_control("Alignment", labels, default=labels[0], label_visibility="collapsed", width="stretch") or labels[0]
     alignment = next(item for item in ALIGNMENTS if item.title == selected)
-    panel, chart = st.columns([1.08, .92], gap="large")
+    panel, chart = st.columns([1.08, 0.92], gap="large")
     with panel:
         mode_panel(alignment.code, alignment.title, alignment.description, alignment.methods[:4], alignment.accent, fantasy=alignment.fantasy, objective=alignment.objective)
     with chart:
         st.plotly_chart(metric_radar(alignment.metrics, alignment.accent), width="stretch", config={"displayModeBar": False})
+
     progression, consequences = st.columns(2, gap="small")
     with progression:
         editorial_panel("PROGRESSION / PATH", "How capability grows", alignment.progression, alignment.methods, alignment.accent)
     with consequences:
         editorial_panel("CONSEQUENCE / PRESSURE", "What the city remembers", "Every alignment creates a signature. Greater capability produces stronger opportunity and clearer opposition.", alignment.consequences, alignment.accent)
+
     section(
         "The alignment loop creates a distinct relationship with the same city.",
         "The sequence below describes what the player repeatedly reads, decides and risks. It is the experiential contract each alignment must preserve.",
         "HEIST CITY / PLAYER LOOP",
     )
     story_timeline(alignment.loop, alignment.accent)
+
     section(
         "Alignment systems in detail.",
         "These dossiers describe the mechanics and tensions that make each role more than a cosmetic faction choice.",
         "HEIST CITY / SYSTEMS",
     )
     detail_accordions(alignment.systems, alignment.accent, alignment.key)
+
     section(
-        "Pursuit intelligence, visualized in two dimensions.",
-        "Move the scenario forward to see police units converge through independent routes rather than simply following the target's trail.",
-        "HEIST CITY / PURSUIT MODEL",
+        "Dynamic pursuit strategy sandbox.",
+        "Simulate police intercept corridors, roadblock cordons, and getaway vectors against various tactical doctrines.",
+        "INTERACTIVE / PURSUIT SANDBOX",
     )
-    stage = st.slider("Pursuit progression", min_value=1, max_value=8, value=5, label_visibility="collapsed", width="stretch")
-    st.plotly_chart(city_pursuit_figure(stage, alignment.accent), width="stretch", config={"displayModeBar": False})
+    sc1, sc2 = st.columns([1.2, 0.8], gap="small")
+    with sc1:
+        strat = st.segmented_control("Getaway Doctrine", ["GRID WEAVE", "HIGHWAY BURN", "ALLEY DIVE", "COUNTER-AMBUSH"], default="GRID WEAVE", width="stretch") or "GRID WEAVE"
+    with sc2:
+        pressure_lvl = st.slider("Police Dispatch Tier", 1, 5, 3, width="stretch")
+    st.plotly_chart(pursuit_sandbox_figure(strat, pressure_lvl, alignment.accent), width="stretch", config={"displayModeBar": False})
+
     section(
         "The same pursuit rendered as a physical city volume.",
         "The 3D grid is a synthetic design visualization: it demonstrates bounded city blocks, route separation and intercept geometry without claiming to be a live game map.",
         "INTERACTIVE / 3D CITY GRID",
     )
+    stage = st.slider("Pursuit progression stage", min_value=1, max_value=8, value=5, width="stretch")
     st.pydeck_chart(city_deck(stage, alignment.accent), width="stretch", height=590)
+
     section(
         "Response doctrine simulator.",
         "Change threat, evidence and mobility to see how a proportional police response should redistribute effort. The model communicates design intent rather than live balance data.",
@@ -367,32 +446,39 @@ def heist_city() -> None:
     with controls[2]:
         mobility = st.slider("Target mobility", 1, 5, 4, width="stretch")
     doctrine, doctrine_copy = _doctrine_text(threat, evidence, mobility)
-    response_chart, response_copy = st.columns([1.05, .95], gap="large")
+    response_chart, response_copy = st.columns([1.05, 0.95], gap="large")
     with response_chart:
         st.plotly_chart(response_doctrine_figure(threat, evidence, mobility, alignment.accent), width="stretch", config={"displayModeBar": False})
     with response_copy:
-        editorial_panel("DISPATCH / RECOMMENDATION", doctrine, doctrine_copy, (f"Threat classification: {threat}/5", f"Evidence confidence: {evidence}/5", f"Target mobility: {mobility}/5", "World state remains authoritative"), alignment.accent)
+        editorial_panel(
+            "DISPATCH / RECOMMENDATION",
+            doctrine,
+            doctrine_copy,
+            (f"Threat classification: {threat}/5", f"Evidence confidence: {evidence}/5", f"Target mobility: {mobility}/5", "World state remains authoritative"),
+            alignment.accent,
+        )
+
     section(
-        "A 24-skill catalog built around new decisions.",
-        "The progression architecture is divided into Hacking, Combat, Driving and Intelligence. Skills should change available strategies and information, not merely inflate statistics.",
-        "HEIST CITY / PROGRESSION",
+        "Interactive 24-skill operative build planner.",
+        "Allocate syndicate points across Hacking, Combat, Driving, and Intelligence to formulate your operative archetype and inspect tactical synergy perks.",
+        "INTERACTIVE / BUILD PLANNER",
     )
-    st.plotly_chart(skill_tree_figure(SKILL_CATEGORIES), width="stretch", config={"displayModeBar": False})
-    categories = [category.title for category in SKILL_CATEGORIES]
-    selected_category = st.segmented_control("Skill family", categories, default=categories[0], label_visibility="collapsed", width="stretch") or categories[0]
-    category = next(item for item in SKILL_CATEGORIES if item.title == selected_category)
-    editorial_panel("SKILL FAMILY / DOSSIER", category.title, category.summary, tuple(f"Tier {skill.tier} — {skill.name}: {skill.description}" for skill in category.skills), category.accent)
+    skill_planner_component(SKILL_CATEGORIES, HEIST_CITY.accent)
+
     section(
         "Current development track.",
         "The city foundation comes before faction breadth: physical traffic, pursuit intelligence, mission loops, then city optimization and scale testing.",
         "HEIST CITY / ROADMAP",
     )
-    roadmap((
-        ("01", "Physical Traffic Beta", "ACTIVE"),
-        ("02", "Police Pursuit Intelligence", "ACTIVE"),
-        ("03", "Mission and Faction Loop", "NEXT"),
-        ("04", "City Optimization", "PLANNED"),
-    ), HEIST_CITY.accent)
+    roadmap(
+        (
+            ("01", "Physical Traffic Beta", "ACTIVE"),
+            ("02", "Police Pursuit Intelligence", "ACTIVE"),
+            ("03", "Mission and Faction Loop", "NEXT"),
+            ("04", "City Optimization", "PLANNED"),
+        ),
+        HEIST_CITY.accent,
+    )
 
 
 def studio() -> None:
@@ -408,12 +494,16 @@ def studio() -> None:
         "Kessoku is organized around player-facing consequence and engineering discipline rather than marketing volume.",
         "STUDIO / OPERATING MODEL",
     )
-    stat_strip((
-        ("01", "SOURCE OF TRUTH", "The server owns gameplay and session outcomes."),
-        ("FIXED", "SIMULATION", "Critical work runs on explicit bounded rails."),
-        ("SHARED", "CONTRACTS", "Bots and players use the same system rules."),
-        ("MANY", "SERVERS", "Scale comes from autonomous bounded instances."),
-    ), "#F4F2EB")
+    stat_strip(
+        (
+            ("01", "SOURCE OF TRUTH", "The server owns gameplay and session outcomes."),
+            ("FIXED", "SIMULATION", "Critical work runs on explicit bounded rails."),
+            ("SHARED", "CONTRACTS", "Bots and players use the same system rules."),
+            ("MANY", "SERVERS", "Scale comes from autonomous bounded instances."),
+        ),
+        "#F4F2EB",
+    )
+
     section(
         "Six principles govern the work.",
         "A feature is not complete because it functions once. It must remain secure, deterministic, bounded, recoverable and understandable under concurrency.",
@@ -422,13 +512,39 @@ def studio() -> None:
     cols = st.columns(2, gap="small")
     for idx, (title, copy) in enumerate(STUDIO_PRINCIPLES):
         with cols[idx % 2]:
-            st.markdown(f'<article class="k-feature" style="--accent:#F4F2EB;margin-bottom:1rem"><div class="k-feature-num">0{idx + 1} / PRINCIPLE</div><h3>{title}</h3><p>{copy}</p></article>', unsafe_allow_html=True)
+            st.markdown(
+                f'<article class="k-feature" style="--accent:#F4F2EB;margin-bottom:1rem"><div class="k-feature-num">0{idx + 1} / PRINCIPLE</div><h3>{title}</h3><p>{copy}</p></article>',
+                unsafe_allow_html=True,
+            )
+
+    section(
+        "Authoritative server netcode & lag compensation laboratory.",
+        "Test how Kessoku's 60Hz server tick loop and 250ms history rewind buffer reconcile in-flight client intent without granting peekers advantage.",
+        "STUDIO / NETCODE LAB",
+    )
+    netcode_lab_component("#76F3FF")
+
     section(
         "The architecture is a supervised flow, not a collection of remotes.",
         "Intent enters through validated actions, advances through fixed simulation and becomes replicated presentation state. Supervisors own lifecycle, health and recovery.",
         "STUDIO / SYSTEM TOPOLOGY",
     )
     st.plotly_chart(system_topology_figure("#76F3FF"), width="stretch", config={"displayModeBar": False})
+
+    section(
+        "Technical devlog & engineering dispatches.",
+        "Searchable public updates detailing netcode revisions, hitbox capsules, multi-agent pursuit AI, and mobile touch optimizations.",
+        "STUDIO / DEVLOG FEED",
+    )
+    devlog_feed_component(DEVLOG_ENTRIES, "#76F3FF")
+
+    section(
+        "Closed flight playtest candidate enlistment.",
+        "Submit your operative credentials to participate in upcoming private flight tests for Super Soldiers and Heist City.",
+        "STUDIO / PLAYTEST ENLISTMENT",
+    )
+    playtest_enlistment_component("#76F3FF")
+
     section(
         "Technology used deliberately.",
         "The site combines validated content, cached procedural media, interactive charts and custom presentation components while keeping the deployable surface understandable.",
@@ -440,7 +556,7 @@ def studio() -> None:
         ("PYDECK", "A synthetic 3D city-grid presentation that demonstrates volume, route separation and interception geometry."),
         ("ALTAIR + PANDAS", "Declarative public roadmap visualization and structured display data."),
         ("NUMPY + PILLOW", "Deterministic cached WebP art-direction placeholders without remote media dependencies."),
-        ("PYDANTIC", "Immutable validated models for games, modes, alignments, skills and public development updates."),
+        ("PYDANTIC", "Immutable validated models for games, modes, alignments, skills, weapons and public devlog dispatches."),
         ("NETWORKX", "Deterministic topology layout for explaining the server-authoritative system flow."),
         ("LOTTIE + OPTION MENU", "Controlled local motion and compact navigation without a separate frontend build."),
     )
@@ -449,6 +565,7 @@ def studio() -> None:
         with rows[index % 2]:
             editorial_panel(f"STACK / {index + 1:02d}", title, copy, ("Explicit responsibility", "No invented external dependency", "Replaceable behind a stable content model"), "#F4F2EB")
             st.space("small")
+
     section(
         "Contact surfaces are intentionally pending.",
         "Official Roblox, Discord, YouTube, press and playtest destinations should be added only after their canonical URLs are confirmed.",
@@ -458,6 +575,19 @@ def studio() -> None:
 
 
 topbar()
+lang, theme, audio, scanlines = hud_controls_bar(
+    st.session_state.lang,
+    st.session_state.theme,
+    st.session_state.audio,
+    st.session_state.scanlines,
+)
+if (lang, theme, audio, scanlines) != (st.session_state.lang, st.session_state.theme, st.session_state.audio, st.session_state.scanlines):
+    st.session_state.lang = lang
+    st.session_state.theme = theme
+    st.session_state.audio = audio
+    st.session_state.scanlines = scanlines
+    st.rerun()
+
 view = navigation()
 if view == "Home":
     home()
@@ -468,3 +598,4 @@ elif view == "Heist City":
 else:
     studio()
 footer()
+
