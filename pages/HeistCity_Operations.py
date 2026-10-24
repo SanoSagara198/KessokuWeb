@@ -58,7 +58,7 @@ with head:
     st.title("HeistCity · Living City Operations")
     st.caption("Design inventory, dependency audit and authoring review. Not live Roblox state.")
 with logout_col:
-    if st.button("Sign out", use_container_width=True):
+    if st.button("Sign out", width="stretch"):
         for k in ("heistcity_ops_authenticated", "hc_catalog", "hc_upload_hash", "hc_mission_review", "hc_facility_review"):
             st.session_state.pop(k, None)
         st.rerun()
@@ -118,7 +118,7 @@ with mission_tab:
     if not view.empty:
         edited = st.data_editor(
             view,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
             key="hc_mission_editor",
             disabled=["ID", "Title", "Issuer", "Campaign", "Tier", "Mode", "Facilities", "Stages"],
@@ -150,7 +150,7 @@ with facility_tab:
     facility_search = st.text_input("Search facility program", placeholder="e.g. hospital, stadium, fire...")
     shown = [f for f in families if not facility_search or facility_search.casefold() in " ".join(str(x) for x in f.values()).casefold()]
     if shown:
-        facility_edit = st.data_editor(pd.DataFrame(shown), use_container_width=True, hide_index=True,
+        facility_edit = st.data_editor(pd.DataFrame(shown), width="stretch", hide_index=True,
             key="hc_facility_editor", disabled=["ID", "Family", "Group", "Min", "Max", "Phase", "Regions"],
             column_config={"Review status": st.column_config.SelectboxColumn("Review status", options=["NOT_VERIFIED", "SITE_RESERVED", "EXTERIOR_ONLY", "ACCESS_VERIFIED", "OPERATIONAL", "ADVANCED"]),
                            "Notes": st.column_config.TextColumn("Notes", max_chars=1000)})
