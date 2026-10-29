@@ -296,7 +296,7 @@ def ballistics_ttk_figure(weapon: WeaponSpec, armor_tier: int, headshot_pct: int
         font=dict(color="#C8CCD2", size=11),
         xaxis=dict(title="ENGAGEMENT DISTANCE (METERS)", gridcolor="rgba(255,255,255,.07)", zeroline=False),
         yaxis=dict(title="TIME-TO-KILL (ms)", gridcolor="rgba(255,255,255,.07)", zeroline=False),
-        yaxis2=dict(title="DAMAGE / HIT (HP)", overlaying="y", side="right", showgrid=False, font=dict(color="#AEB4BC")),
+        yaxis2=dict(title="DAMAGE / HIT (HP)", overlaying="y", side="right", showgrid=False, tickfont=dict(color="#AEB4BC")),
         legend=dict(orientation="h", y=1.12, bgcolor="rgba(0,0,0,0)"),
         hovermode="x unified",
     )

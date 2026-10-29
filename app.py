@@ -355,8 +355,7 @@ def super_soldiers() -> None:
         "Inspect ballistic performance profiles, simulated dispersion bloom, and time-to-kill curves under varied target armor and precision parameters.",
         "INTERACTIVE / BALLISTICS LAB",
     )
-    weapon_lab_component(WEAPONS,
-    OPERATORS, SUPER_SOLDIERS.accent)
+    weapon_lab_component(WEAPONS, SUPER_SOLDIERS.accent)
 
     section(
         "Combat pressure laboratory.",
