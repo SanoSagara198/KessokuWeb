@@ -54,6 +54,7 @@ from kessoku_site.quick_recon import render_quick_recon_terminal
 from kessoku_site.mission_intel import render_operative_duel_matrix, render_zombie_descent_planner
 from kessoku_site.dispatch_scanner import render_dispatch_scanner, render_vehicle_comparison
 from kessoku_site.cluster_status import render_server_clusters_matrix
+from kessoku_site.maps import render_battlefield_recon
 from kessoku_site.theme import get_theme_css
 from kessoku_site.visuals import (
     city_pursuit_figure,
@@ -384,6 +385,13 @@ def super_soldiers() -> None:
         "INTERACTIVE / SYNERGY LAB",
     )
     render_loadout_theorycrafter(SUPER_SOLDIERS.accent)
+
+    section(
+        "Battlefield tactical recon & callout blueprints.",
+        "Architectural dossiers, sightline corridors, and strategic callouts for Verdant Outpost, District 9 Rail Yard, and Subterranean Silo.",
+        "BATTLE BUILDS / MAP RECON",
+    )
+    render_battlefield_recon(SUPER_SOLDIERS.accent)
 
     section(
         "Combat pressure laboratory.",

@@ -114,6 +114,7 @@ def render_player_companion(user_info: dict[str, Any]) -> None:
             "🧬 Operator Roster (15)",
             "🔧 Gunsmith Bench (56)",
             "⏱️ 6-Hour Shop Radar",
+            "🎖️ Accolades & Loadout Exporter",
         ]
     )
 
@@ -425,3 +426,77 @@ def render_player_companion(user_info: dict[str, Any]) -> None:
                     """,
                     unsafe_allow_html=True,
                 )
+
+    # TAB 6: ACCOLADES & LOADOUT EXPORTER
+    with comp_tabs[5]:
+        st.markdown("#### Career Accolades & Tactical Badges")
+        st.caption("Milestone medals unlocked via live gameplay telemetry.")
+
+        career = profile.get("CareerStats", {})
+        kills = career.get("kills", 0)
+        deaths = max(1, career.get("deaths", 1))
+        kd = kills / deaths
+        wallet = profile.get("PlayerCurrencies", {})
+        credits = wallet.get("credits", 0)
+        jigsaw = wallet.get("jigsaw", 0)
+        keys = wallet.get("keys", 0)
+
+        medals = [
+            ("APEX ELIMINATOR", f"{kills:,} Kills (Req: 750)", kills >= 750, "#76F3FF", "★ GOLD TIER"),
+            ("COMBAT EFFICIENCY", f"{kd:.2f} K/D Ratio (Req: 2.50)", kd >= 2.5, "#8CFFAA", "★ LETHAL"),
+            ("SYNDICATE FINANCIER", f"${credits:,} Credits (Req: 10M)", credits >= 10000000, "#FFB84D", "★ HIGH ROLLER"),
+            ("JIGSAW CRYPTOGRAPHER", f"{jigsaw:,} Jigsaw (Req: 5,000)", jigsaw >= 5000, "#76F3FF", "★ MASTER"),
+            ("VAULT KEYMASTER", f"{keys} Keys (Req: 50)", keys >= 50, "#FF764D", "★ ANCIENT"),
+            ("DESCENT CONQUEROR", "Floor 10 Extraction", False, "#AEB4BC", "IN PROGRESS"),
+        ]
+
+        m_cols = st.columns(3)
+        for i, (m_title, m_desc, unlocked, color, tier) in enumerate(medals):
+            with m_cols[i % 3]:
+                st.markdown(
+                    f'''
+                    <div style="background:rgba(255,255,255,0.02);border:1px solid {'rgba(118,243,255,0.4)' if unlocked else 'rgba(255,255,255,0.06)'};border-top:3px solid {color if unlocked else 'rgba(255,255,255,0.1)'};border-radius:10px;padding:14px;margin-bottom:12px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span style="font-size:14px;font-weight:900;color:#F4F2EB;">{m_title}</span>
+                            <span style="font-size:9px;font-weight:800;color:{color if unlocked else '#AEB4BC'};background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;">{tier}</span>
+                        </div>
+                        <div style="font-size:12px;color:{'#D9DCE1' if unlocked else '#71767E'};margin-top:6px;">{m_desc}</div>
+                        <div style="font-size:10px;font-weight:800;color:{'#8CFFAA' if unlocked else '#AEB4BC'};margin-top:8px;">
+                            {'[UNLOCKED & VERIFIED]' if unlocked else '[LOCKED]'}
+                        </div>
+                    </div>
+                    ''',
+                    unsafe_allow_html=True,
+                )
+
+        st.markdown("#### Shareable Loadout String Codes")
+        st.caption("Generate copyable build strings to share tri-slot configurations with teammates.")
+        
+        loadouts = profile.get("PlayerLoadouts", [])
+        if loadouts:
+            for i, lo in enumerate(loadouts, 1):
+                op_name = lo.get("Operator", {}).get("TitleName", "SOLDIER")
+                pw = lo.get("Main", {}).get("id", "M416")
+                sw = lo.get("Secondary", {}).get("id", "Katana")
+                s1 = lo.get("Special1", {}).get("id", "C4")
+                s2 = lo.get("Special2", {}).get("id", "Flashbang")
+                code_str = f"BBUILDS-V1:OP_{op_name.upper()}|PRI_{pw.upper()}|SEC_{sw.upper()}|SP1_{s1.upper()}|SP2_{s2.upper()}"
+                st.text_input(f"Loadout #{i} ({op_name} &bull; {pw})", value=code_str, key=f"code_lo_{i}", disabled=True)
+        else:
+            st.info("No loadout profiles found to export.")
+
+        st.markdown("#### Quick Launch Direct Connect")
+        st.markdown(
+            f'''
+            <div style="background:rgba(118,243,255,0.03);border:1px solid rgba(118,243,255,0.2);border-radius:10px;padding:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+                <div>
+                    <div style="font-size:16px;font-weight:900;color:#F4F2EB;">LAUNCH BATTLE BUILDS ON ROBLOX</div>
+                    <div style="font-size:12px;color:#AEB4BC;">Universe ID: 4046514670 &bull; Direct deep link to production arena.</div>
+                </div>
+                <a href="https://www.roblox.com/games/4046514670" target="_blank" style="background:#76F3FF;color:#090A0C;font-weight:900;font-size:13px;padding:10px 20px;border-radius:8px;text-decoration:none;letter-spacing:0.04em;">
+                    OPEN IN ROBLOX &rarr;
+                </a>
+            </div>
+            ''',
+            unsafe_allow_html=True,
+        )
