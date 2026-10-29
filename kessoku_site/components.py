@@ -313,10 +313,10 @@ def footer() -> None:
             <div class="k-footer-line">Studio systems</div>
           </div>
           <div>
-            <div class="k-footer-heading">PUBLIC STATUS</div>
-            <div class="k-footer-line">Development active</div>
-            <div class="k-footer-line">Canonical links pending</div>
-            <div class="k-footer-line">No invented release dates</div>
+            <div class="k-footer-heading">LEGAL & POLICIES</div>
+            <div class="k-footer-line"><a href="?view=Privacy" target="_self" style="color:inherit;text-decoration:underline;">Privacy Policy</a></div>
+            <div class="k-footer-line"><a href="?view=Terms" target="_self" style="color:inherit;text-decoration:underline;">Terms of Service</a></div>
+            <div class="k-footer-line">Roblox OAuth 2.0 Compliant</div>
           </div>
           <div class="k-footer-base"><span>© 2026 KESSOKU GAMES / ARGENTINA</span><span>ONE WORLD / ONE TRUTH / MANY PLAYERS</span></div>
         </footer>

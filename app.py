@@ -95,8 +95,40 @@ def poster(accent_rgb: tuple[int, int, int], seed: int) -> bytes:
 
 def route_from_query() -> str:
     route = st.query_params.get("view", "Home")
-    valid = {"Home", "Super Soldiers", "Heist City", "Studio"}
+    valid = {"Home", "Super Soldiers", "Heist City", "Studio", "Privacy", "Terms"}
     return route if route in valid else "Home"
+
+
+def privacy_page() -> None:
+    hero(
+        "PRIVACY POLICY",
+        "KESSOKU GAMES / LEGAL",
+        "How we handle player authentication and gameplay data via Roblox OAuth 2.0.",
+        "#76F3FF",
+        "POLICY / COPPA COMPLIANT<br>AUTH / ROBLOX OAUTH 2.0<br>STATUS / ACTIVE",
+    )
+    if st.button("← Back to Hub", key="back_from_priv"):
+        st.query_params["view"] = "Home"
+        st.rerun()
+    p_file = ROOT / "docs" / "PRIVACY.md"
+    if p_file.is_file():
+        st.markdown(p_file.read_text(encoding="utf-8"))
+
+
+def terms_page() -> None:
+    hero(
+        "TERMS OF SERVICE",
+        "KESSOKU GAMES / LEGAL",
+        "Terms governing the Kessoku Games platform and offline companion services.",
+        "#76F3FF",
+        "TERMS / ROBLOX COMPLIANT<br>COMMERCE / NO OFF-PLATFORM SALES<br>STATUS / ACTIVE",
+    )
+    if st.button("← Back to Hub", key="back_from_terms"):
+        st.query_params["view"] = "Home"
+        st.rerun()
+    t_file = ROOT / "docs" / "TERMS.md"
+    if t_file.is_file():
+        st.markdown(t_file.read_text(encoding="utf-8"))
 
 
 def set_route(route: str) -> None:
@@ -107,11 +139,12 @@ def set_route(route: str) -> None:
 def navigation() -> str:
     default = route_from_query()
     options = ["Home", "Super Soldiers", "Heist City", "Studio"]
+    default_index = options.index(default) if default in options else 0
     selected = option_menu(
         menu_title=None,
         options=options,
         icons=["house", "crosshair", "buildings", "diamond"],
-        default_index=options.index(default),
+        default_index=default_index,
         orientation="horizontal",
         styles={
             "container": {"padding": "0!important", "background-color": "transparent", "margin-bottom": "1rem"},
@@ -587,14 +620,20 @@ if (lang, theme, audio, scanlines) != (st.session_state.lang, st.session_state.t
     st.session_state.scanlines = scanlines
     st.rerun()
 
-view = navigation()
-if view == "Home":
-    home()
-elif view == "Super Soldiers":
-    super_soldiers()
-elif view == "Heist City":
-    heist_city()
+current_view = route_from_query()
+if current_view == "Privacy":
+    privacy_page()
+elif current_view == "Terms":
+    terms_page()
 else:
-    studio()
+    view = navigation()
+    if view == "Home":
+        home()
+    elif view == "Super Soldiers":
+        super_soldiers()
+    elif view == "Heist City":
+        heist_city()
+    else:
+        studio()
 footer()
 
