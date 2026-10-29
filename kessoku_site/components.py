@@ -1,28 +1,10 @@
 from __future__ import annotations
 
 import base64
-import contextlib
 from html import escape
 from typing import Any
 
 import streamlit as st
-
-try:
-    from streamlit_extras.stylable_container import stylable_container
-except Exception:
-    @contextlib.contextmanager
-    def stylable_container(key: str, css_styles: str | list[str]):
-        styles = css_styles if isinstance(css_styles, str) else "\n".join(css_styles)
-        st.markdown(
-            f'''<style>
-            div[data-testid="stVerticalBlock"]:has(div.st-key-{key}) {{
-                {styles}
-            }}
-            </style>''',
-            unsafe_allow_html=True,
-        )
-        with st.container(key=key):
-            yield
 
 from .campaign import CAMPAIGN_CSS
 from .content import ARCHETYPES, I18N, calculate_build_archetype
@@ -299,13 +281,22 @@ def roadmap(items: tuple[tuple[str, str, str], ...], accent: str) -> None:
 
 
 def action_button(label: str, key: str, accent: str) -> bool:
-    with stylable_container(
-        key=f"style-{key}",
-        css_styles=f"""
-        button {{ border-color:{accent}!important; box-shadow: inset 0 0 0 1px {accent}22; }}
-        button:hover {{ background:{accent}18!important; border-color:{accent}!important; }}
+    st.markdown(
+        f"""
+        <style>
+        div[data-testid="stVerticalBlock"]:has(> div.st-key-btn-{key}) button {{
+            border-color: {accent} !important;
+            box-shadow: inset 0 0 0 1px {accent}22;
+        }}
+        div[data-testid="stVerticalBlock"]:has(> div.st-key-btn-{key}) button:hover {{
+            background: {accent}18 !important;
+            border-color: {accent} !important;
+        }}
+        </style>
         """,
-    ):
+        unsafe_allow_html=True,
+    )
+    with st.container(key=f"btn-{key}"):
         return st.button(label, key=key, width="stretch")
 
 
