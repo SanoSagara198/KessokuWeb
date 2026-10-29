@@ -48,6 +48,8 @@ from kessoku_site.content import (
 from kessoku_site.city_atlas import render_city_atlas
 from kessoku_site.auth import handle_oauth_flow, get_roblox_auth_url, login_as_demo
 from kessoku_site.companion import render_player_companion
+from kessoku_site.heist_companion import render_heist_companion
+from kessoku_site.heist_planner import render_heist_planner
 from kessoku_site.theorycrafter import render_loadout_theorycrafter
 from kessoku_site.vehicles import render_heist_vehicle_showroom
 from kessoku_site.quick_recon import render_quick_recon_terminal
@@ -118,15 +120,26 @@ def route_from_query() -> str:
 
 def companion_page() -> None:
     hero(
-        "BATTLE BUILDS COMPANION",
-        "OFFLINE ARMORY & PROGRESSION HUB",
-        "Inspect verified live DataStore stats, loadouts, and upgrade curves without launching the game client.",
+        "KESSOKU COMPANION HUB",
+        "OFFLINE MULTI-UNIVERSE PROGRESSION",
+        "Inspect verified live DataStore stats, loadouts, wallets, and vehicle fleets across Battle Builds and Heist City.",
         "#76F3FF",
-        "DATA / ROBLOX OPEN CLOUD<br>AUTH / OAUTH 2.0 VERIFIED<br>CURRENCIES / CREDITS + JIGSAW",
+        "DATA / ROBLOX OPEN CLOUD<br>AUTH / OAUTH 2.0 VERIFIED<br>UNIVERSES / 4046514670 + 10772507321",
     )
     user = st.session_state.get("roblox_user")
+    
+    universe_choice = st.segmented_control(
+        "Select Universe Companion",
+        ["🔫 BATTLE BUILDS (UNIVERSE 4046514670)", "🏙️ HEIST CITY: NEWCITY (UNIVERSE 10772507321)"],
+        default="🔫 BATTLE BUILDS (UNIVERSE 4046514670)",
+        width="stretch",
+    ) or "🔫 BATTLE BUILDS (UNIVERSE 4046514670)"
+
     if user:
-        render_player_companion(user)
+        if "BATTLE BUILDS" in universe_choice:
+            render_player_companion(user)
+        else:
+            render_heist_companion(user)
     else:
         st.markdown(
             """
@@ -134,9 +147,18 @@ def companion_page() -> None:
                 <h3 style="color:#F4F2EB;margin-top:0;">Connect Your Roblox Identity</h3>
                 <p style="color:#AEB4BC;font-size:14px;line-height:1.6;">
                     Sign in with your official Roblox account via <strong>Roblox OAuth 2.0</strong> to link your verified
-                    in-game progression. The companion loads your active battle loadouts, wallet balances (Credits & Jigsaw pieces),
-                    and operator levels directly from Roblox DataStore in read-only mode.
+                    in-game progression across both independent Kessoku game universes:
                 </p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
+                    <div style="background:rgba(255,255,255,0.02);padding:14px;border-radius:8px;border-left:3px solid #76F3FF;">
+                        <strong style="color:#76F3FF;">Battle Builds (Universe 4046514670)</strong>
+                        <div style="font-size:12px;color:#AEB4BC;margin-top:4px;">Tri-slot battle loadouts, credits & jigsaw wallet, 15 operator levels, and 6-hour shop radar.</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02);padding:14px;border-radius:8px;border-left:3px solid #FF764D;">
+                        <strong style="color:#FF764D;">Heist City: NewCity (Universe 10772507321)</strong>
+                        <div style="font-size:12px;color:#AEB4BC;margin-top:4px;">Syndicate cash & bank vault, wanted heat stars, fleet garage, and 24-skill progression tree.</div>
+                    </div>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -512,6 +534,13 @@ def heist_city() -> None:
         "HEIST CITY / PILLARS",
     )
     feature_grid(HEIST_CITY)
+
+    section(
+        "Tactical heist operation planner & payout simulator.",
+        "Plan bank vault breaches, convoy ambushes, and harbor contraband runs. Calculate police dispatch response time, gross loot, and crew cuts.",
+        "INTERACTIVE / OPERATION PLANNER",
+    )
+    render_heist_planner(HEIST_CITY.accent)
 
     section(
         "Choose where you stand.",

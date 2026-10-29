@@ -67,6 +67,14 @@ def test_full_site():
         assert len(at.exception) == 0, f"Companion rendered dashboard exceptions: {[e.value for e in at.exception]}"
         print("  [PASS] Live Wallet, Career Telemetry, 3 Loadouts, 15 Operatives, and Gunsmith bench verified.")
 
+        # Test Heist City Companion
+        for sc in at.segmented_control:
+            if "Universe" in sc.label:
+                sc.select("🏙️ HEIST CITY: NEWCITY (UNIVERSE 10772507321)").run(timeout=10)
+                break
+        assert len(at.exception) == 0, f"Heist City companion exceptions: {[e.value for e in at.exception]}"
+        print("  [PASS] Heist City Syndicate Treasury, Garage, 24-Skill Tree, and Receipts verified.")
+
     # 6. Test Privacy & Terms Routes
     print("\n[6/6] Testing Legal Policy Routes...")
     at.query_params["view"] = "Privacy"

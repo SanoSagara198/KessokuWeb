@@ -151,3 +151,39 @@ def fetch_player_profile(user_id: str | int) -> tuple[dict[str, Any], str]:
         return default_cached, "snapshot"
 
     return {}, "none"
+
+
+@st.cache_data(ttl=60, show_spinner=False)
+def fetch_heist_player_profile(user_id: str | int) -> tuple[dict[str, Any], str]:
+    """Fetch live Heist City player profile from PlayerProgress_v1 with verified snapshot fallback.
+    Returns: (profile_dict, source_type) where source_type is 'live', 'snapshot', or 'none'.
+    """
+    uid_str = str(user_id).strip()
+    sec = _get_secrets()
+    api_key = sec.get("roblox_open_cloud_api_key")
+    heist_universe_id = sec.get("roblox_heist_universe_id", "10772507321")
+
+    if api_key and uid_str:
+        url = (
+            f"https://apis.roblox.com/datastores/v1/universes/{heist_universe_id}/"
+            f"standard-datastores/datastore/entries/entry"
+            f"?datastoreName=PlayerProgress_v1&entryKey=u{uid_str}"
+        )
+        req = urllib.request.Request(url, headers={"x-api-key": api_key})
+        try:
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                if isinstance(data, dict) and data:
+                    return data, "live"
+        except Exception:
+            pass
+
+    cached = _load_local_json(f"heist_player_{uid_str}.json")
+    if cached:
+        return cached, "snapshot"
+
+    default_cached = _load_local_json("heist_player_2725352577.json")
+    if default_cached and (uid_str in {"2725352577", "demo", "0"} or not uid_str):
+        return default_cached, "snapshot"
+
+    return {}, "none"

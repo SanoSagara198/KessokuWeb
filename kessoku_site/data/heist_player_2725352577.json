@@ -1,0 +1,89 @@
+{
+  "userId": 2725352577,
+  "username": "KessokuDev",
+  "universeId": "10772507321",
+  "placeId": 103267062013348,
+  "lastUpdated": "2026-10-29T04:15:00Z",
+  "Progress": {
+    "Money": 450000,
+    "BankBalance": 1850000,
+    "DirtyCash": 120000,
+    "Reputation": {
+      "Criminal": 4200,
+      "Police": 850,
+      "Vigilante": 1950
+    },
+    "WantedLevel": 2,
+    "HeatDecaySecondsRemaining": 24,
+    "CurrentAlignment": "criminal",
+    "VehiclesOwned": [
+      "Undercover Chicago Police Cruiser",
+      "Ford 4x4 Interceptor",
+      "BMW M3 E30",
+      "McLaren P1 Heist Spec",
+      "[UV] Lenco Bearcat"
+    ],
+    "ActiveVehicle": "McLaren P1 Heist Spec",
+    "CompletedJobs": [
+      {
+        "id": "JOB-VAULT-049",
+        "title": "Subterranean Reserve Vault Breach",
+        "payout": 250000,
+        "district": "Central Financial",
+        "status": "COMPLETED",
+        "timestamp": "2026-10-28T22:30:00Z"
+      },
+      {
+        "id": "JOB-COURIER-112",
+        "title": "High-Speed Marina Contraband Run",
+        "payout": 45000,
+        "district": "Marina Docks",
+        "status": "COMPLETED",
+        "timestamp": "2026-10-27T19:15:00Z"
+      },
+      {
+        "id": "JOB-STREET-084",
+        "title": "Downtown Jewelry Store Quick-Grab",
+        "payout": 85000,
+        "district": "Commercial District",
+        "status": "COMPLETED",
+        "timestamp": "2026-10-26T14:40:00Z"
+      }
+    ],
+    "TrafficFines": [
+      {
+        "citation": "FINE-1080",
+        "violation": "Excess of 120 MPH in Downtown Zone",
+        "fine": 1200,
+        "status": "UNPAID"
+      }
+    ]
+  },
+  "Skills": {
+    "availablePoints": 4,
+    "skillXP": 1450,
+    "lifetimePointsEarned": 24,
+    "allocatedSkills": {
+      "Hacking": {
+        "Wiretapping": 3,
+        "Network Override": 2,
+        "Decryption": 2
+      },
+      "Combat": {
+        "Recoil Mastery": 3,
+        "CQB Takedown": 2,
+        "Armor Hardening": 2
+      },
+      "Driving": {
+        "Pursuit Evasion": 3,
+        "Ramming Momentum": 2,
+        "Drift Recovery": 3
+      },
+      "Intelligence": {
+        "Police Scanner": 2,
+        "Heat Dissipation": 2,
+        "Safehouse Access": 1
+      }
+    }
+  }
+}
