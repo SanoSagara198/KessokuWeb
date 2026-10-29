@@ -1,6 +1,6 @@
-# Kessoku Games Website V2.3
+# Kessoku Games Website V2.4
 
-A cinematic, interactive Streamlit portfolio for **Kessoku Games**, **Super Soldiers**, and **Heist City**.
+A cinematic, interactive Streamlit portfolio and live offline companion for **Kessoku Games**, **Battle Builds** (5v5 Tactical Combat Arena), and **Heist City**.
 
 ## Current experience
 
@@ -17,9 +17,9 @@ A cinematic, interactive Streamlit portfolio for **Kessoku Games**, **Super Sold
 - Public roadmap and development-signal cards
 - Expanded studio footer with truthful public status
 
-### Super Soldiers
+### Battle Builds
 
-- Detailed 5v5 Arena and City of Zombies dossiers
+- Detailed 5v5 Tactical Arena, Solo Bot Facility, and Zombie Descent dossiers
 - Player fantasy, objective, public facts, and five-stage tactical loops
 - Interactive tactical-profile radar
 - Combat-pressure laboratory with threat intensity and squad posture

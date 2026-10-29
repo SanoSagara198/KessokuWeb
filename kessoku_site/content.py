@@ -17,31 +17,31 @@ from .models import (
 
 
 SUPER_SOLDIERS = Game(
-    slug="super-soldiers",
-    title="SUPER SOLDIERS",
-    category="TACTICAL ACTION / PVP + PVE",
-    tagline="Every second is a tactical decision.",
+    slug="battle-builds",
+    title="BATTLE BUILDS",
+    category="5V5 TACTICAL COMBAT / ADRENALINE ARENA",
+    tagline="Tactical sightlines. 60Hz server authority. Zero compromise.",
     pitch=(
-        "A mobile-first Roblox combat game where players and bots fight through one "
-        "server-owned simulation. Enter a focused 5v5 arena or hold the line in City of Zombies."
+        "An intense, fast-paced tactical top-down shooter. 5v5 squad arenas, solo bot combat practice, "
+        "and 10-floor Zombie Descent survival gauntlets powered by one server-owned simulation."
     ),
     long_description=(
-        "Super Soldiers is built around compressed tactical consequence. The player must read space, "
-        "commit to movement, preserve ammunition, understand cooldown windows, and coordinate with a "
-        "team under time pressure. Competitive arena and cooperative survival are not separate technical "
-        "products: they are two operational expressions of the same combat model, so every improvement "
-        "to hit validation, movement authority, bot reasoning, readability, or mobile control strengthens both."
+        "Battle Builds is engineered around high-tempo tactical consequence. Combatants read sightlines, "
+        "execute stamina-managed combat rolls, preserve magazine discipline, and coordinate squad fire "
+        "under extreme pressure. Competitive 5v5 arena, offline bot training, and escalating PvE gauntlets "
+        "share one authoritative 60Hz netcode foundation: every raycast, recoil bloom reset, and elimination "
+        "resolves entirely on the server."
     ),
     accent="#76F3FF",
     accent_rgb=(118, 243, 255),
     status="AUTHORITY BETA",
     features=(
-        ("One combat truth", "Damage, ammunition, reloads, cooldowns, skills, status, score and match state resolve through one server-owned simulation."),
-        ("Readable pressure", "Strong silhouettes, bounded effects and deliberate feedback let players understand danger before spectacle overwhelms the fight."),
-        ("Shared rules", "Players and bots enter the same damage, movement, targeting and scoring contracts instead of using incompatible shortcuts."),
-        ("Two operations", "Competitive 5v5 and cooperative survival change the objective pressure without fragmenting the combat foundation."),
-        ("Mobile-first control", "A fixed tactical camera, direct input vocabulary and constrained visual noise preserve precision on touch devices."),
-        ("Deterministic pacing", "Match phases, respawns, overtime and PvE escalation run on bounded simulation rails rather than frame-rate-dependent authority."),
+        ("60Hz Server Authority", "Damage, recoil bloom, reloads, dodge rolls, and eliminations resolve through one authoritative server tick engine."),
+        ("Sightline Vision Cones", "Top-down tactical fog-of-war: terrain and solid cover block target acquisition until direct line-of-sight is gained."),
+        ("Tactical Dodge Evasion", "Stamina-managed evasion roll breaks target locks and slips out of deadly crossfire corridors."),
+        ("Tri-Slot Armory", "Equip Primary firearms, Secondary sidearms or melee blades, and game-changing Tactical Special gadgets."),
+        ("Autonomous Bot Takeover", "Server-authoritative bot AI fills vacancies or replaces disconnects instantly without stalling match momentum."),
+        ("Deterministic Pacing", "Match phases, respawn cadences, overtime, and floor escalations operate on strict simulation time."),
     ),
 )
 
@@ -79,7 +79,7 @@ HEIST_CITY = Game(
 SUPER_MODES = (
     Mode(
         key="arena",
-        title="5V5 ARENA",
+        title="5V5 TACTICAL ARENA",
         strapline="Ten combatants. One authoritative match.",
         player_fantasy=(
             "Enter a compact tactical arena where every movement exposes intent. Win by creating better angles, "
@@ -95,7 +95,7 @@ SUPER_MODES = (
             "Control space, preserve combat resources and build a score advantage before the core timer expires. "
             "When regulation ends without resolution, overtime compresses the decision window and forces commitment."
         ),
-        facts=("10 combatants", "4-minute core match", "6-second respawn", "Bot takeover on leave"),
+        facts=("10 Combatants (5v5)", "Dynamic Bot Takeover", "Sightline Vision Cones", "60Hz Server Authority"),
         metrics=(
             Metric(label="Tempo", value=92),
             Metric(label="Teamplay", value=88),
@@ -141,23 +141,61 @@ SUPER_MODES = (
         ),
     ),
     Mode(
-        key="zombies",
-        title="CITY OF ZOMBIES",
-        strapline="Hold the city. Adapt to the horde.",
+        key="training",
+        title="SOLO BOT COMBAT FACILITY",
+        strapline="Private isolation range to drill weapons, aim acquisition, and dodge timings.",
         player_fantasy=(
-            "Survive as a squad inside a collapsing city operation. Read the next threat, rescue a failing position, "
-            "manage ammunition and decide when a defensive line is no longer worth holding."
+            "Spawn solo into an isolated training facility running identical server combat netcode. Drill weapon recoil, "
+            "practice aim-cone tracking, and refine tactical movement against adaptive bot AI before entering ranked matches."
         ),
         description=(
-            "City of Zombies turns the same combat foundation into a cooperative pressure engine. Threat density rises, "
-            "safe areas become temporary, and the squad must balance elimination speed against rescue timing and resource loss. "
-            "The mode is not about infinite enemies alone; it is about the tactical consequences of being surrounded, separated or exhausted."
+            "Offline training allows combatants to benchmark weapon TTK, calibrate dodge timings, and test new loadouts "
+            "without matchmaking wait times. Currently single-player solo; squad practice will unlock as hub capacity expands."
         ),
         objective=(
-            "Maintain squad viability through escalating encounters, complete operational objectives and preserve enough "
-            "combat capacity to survive the next pressure spike rather than merely the current wave."
+            "Master weapon bloom control, test operator talents, and refine movement mechanics against bot AI."
         ),
-        facts=("Cooperative survival", "Escalating waves", "Shared score pressure", "Adaptive bot support"),
+        facts=("Solo Combat Range", "Identical Server Netcode", "Custom Bot Opponents", "Future Squad Scrims"),
+        metrics=(
+            Metric(label="Tempo", value=68),
+            Metric(label="Teamplay", value=40),
+            Metric(label="Precision", value=95),
+            Metric(label="Pressure", value=55),
+            Metric(label="Exploration", value=80),
+        ),
+        loop=(
+            StoryBeat(code="01 / SPAWN", title="Configure combat test", description="Select any weapon, operator and talent configuration to benchmark live ballistic performance."),
+            StoryBeat(code="02 / ENGAGE", title="Drill aim acquisition", description="Test target lock delay, moving spread penalty, and horizontal recoil climb against active targets."),
+            StoryBeat(code="03 / EVADE", title="Master tactical dodge", description="Practice breaking incoming fire vectors and repositioning behind hard cover."),
+            StoryBeat(code="04 / BENCHMARK", title="Measure damage curves", description="Observe exact damage falloff across distance studs to discover optimal engagement ranges."),
+            StoryBeat(code="05 / REFINE", title="Lock your battle build", description="Carry refined muscle memory and loadout synergies straight into the 5v5 PvP arena."),
+        ),
+        systems=(
+            DetailBlock(
+                title="Authoritative practice sandbox",
+                summary="Runs the exact same simulation loops, hit validation, and cooldown timers as ranked PvP.",
+                description="Zero client shortcut physics. Recoil patterns, bullet velocities, and spread recovery match live competition.",
+                bullets=("Identical 60Hz tick netcode", "Predictable bot proposals", "No matchmaking delay", "Instant weapon hot-swapping"),
+            ),
+        ),
+    ),
+    Mode(
+        key="zombies",
+        title="ZOMBIE DESCENT",
+        strapline="10-floor escalating subterranean survival gauntlet.",
+        player_fantasy=(
+            "Descend floor by floor into collapsing infested ruins. Conserve ammunition, prioritize high-threat mutations, "
+            "and survive escalating swarms across all 10 floors."
+        ),
+        description=(
+            "Zombie Descent turns the combat engine into a high-pressure survival gauntlet. Encounter 7 mutating enemy archetypes: "
+            "Weak shamblers, armored Heavies, agile Haste rushers, ranged Rifle infected, and toxic Gas/Smoke carriers, with punishing "
+            "checkpoint Bosses at Floor 5 and Floor 10."
+        ),
+        objective=(
+            "Clear each floor, manage reload downtime, protect escape routes, and survive through Floor 10."
+        ),
+        facts=("10 Escalating Floors", "7 Mutating Archetypes", "Checkpoint Bosses (F5 & F10)", "Future Squad Co-op"),
         metrics=(
             Metric(label="Tempo", value=76),
             Metric(label="Teamplay", value=94),
@@ -394,68 +432,100 @@ DEVELOPMENT_UPDATES = (
 
 WEAPONS = (
     WeaponSpec(
-        key="arc-4",
-        name="ARC-4 CARBINE",
-        role="Standard Tactical Assault",
-        caliber="5.56x45mm",
-        rpm=650,
+        key="ak-47",
+        name="AK-47 ASSAULT RIFLE",
+        role="Main Firearm / Tactical Assault",
+        caliber="7.62x39mm Authored",
+        rpm=600,
         mag_size=30,
-        reload_sec=2.1,
-        base_damage=28.0,
+        reload_sec=2.0,
+        base_damage=300.0,
         head_mult=1.75,
-        optimal_range=24,
-        max_range=55,
-        recoil_vert=2.8,
-        recoil_horiz=1.2,
-        description="Balanced mid-range platform with predictable climb and tight first-shot accuracy. The core squad workhorse.",
+        optimal_range=40,
+        max_range=100,
+        recoil_vert=0.9,
+        recoil_horiz=0.7,
+        description="Hard-hitting tactical assault rifle. Heavy stopping power with controllable recoil cadence. The frontline workhorse.",
     ),
     WeaponSpec(
-        key="valkyrie-7",
-        name="VALKYRIE-7 DMR",
-        role="Designated Marksman",
-        caliber="7.62x51mm",
-        rpm=280,
-        mag_size=15,
-        reload_sec=2.6,
-        base_damage=54.0,
-        head_mult=2.10,
-        optimal_range=42,
-        max_range=85,
-        recoil_vert=5.4,
-        recoil_horiz=0.8,
-        description="High-caliber precision rifle punishing exposed targets. Rewards trigger discipline and defensive sightlines.",
+        key="m416",
+        name="M416 CARBINE",
+        role="Main Firearm / Precision Automatic",
+        caliber="5.56x45mm Authored",
+        rpm=660,
+        mag_size=30,
+        reload_sec=1.9,
+        base_damage=270.0,
+        head_mult=1.80,
+        optimal_range=45,
+        max_range=100,
+        recoil_vert=0.6,
+        recoil_horiz=0.4,
+        description="Exceptional stability and tight moving spread. Allows precise suppression and swift target switching while strafing.",
     ),
     WeaponSpec(
-        key="specter-9",
-        name="SPECTER-9 SMG",
-        role="Close-Quarters Infiltration",
-        caliber="9x19mm Parabellum",
-        rpm=880,
-        mag_size=32,
-        reload_sec=1.7,
-        base_damage=21.0,
+        key="spas-12",
+        name="SPAS-12 COMBAT SHOTGUN",
+        role="Main Firearm / CQB Breaching",
+        caliber="12-Gauge Buckshot",
+        rpm=600,
+        mag_size=12,
+        reload_sec=2.4,
+        base_damage=3000.0,
+        head_mult=1.30,
+        optimal_range=15,
+        max_range=40,
+        recoil_vert=1.8,
+        recoil_horiz=0.9,
+        description="Devastating point-blank stopping power. Multi-pellet spread punishes tight corners and breaches defensive lines.",
+    ),
+    WeaponSpec(
+        key="m200",
+        name="M200 INTERVENTION",
+        role="Main Firearm / Anti-Materiel Sniper",
+        caliber=".408 CheyTac",
+        rpm=60,
+        mag_size=12,
+        reload_sec=2.8,
+        base_damage=3000.0,
+        head_mult=2.50,
+        optimal_range=75,
+        max_range=100,
+        recoil_vert=2.5,
+        recoil_horiz=0.3,
+        description="High-caliber precision rifle delivering extreme lane denial. One-shot elimination potential against exposed combatants.",
+    ),
+    WeaponSpec(
+        key="m134",
+        name="M134 ROTARY MINIGUN",
+        role="Main Firearm / Heavy Suppression",
+        caliber="7.62mm Sustained",
+        rpm=900,
+        mag_size=100,
+        reload_sec=3.5,
+        base_damage=400.0,
         head_mult=1.50,
-        optimal_range=14,
-        max_range=35,
-        recoil_vert=2.1,
-        recoil_horiz=2.4,
-        description="Rapid-cycling submachine gun dominating room breaches. High horizontal drift requires close containment.",
+        optimal_range=35,
+        max_range=95,
+        recoil_vert=1.2,
+        recoil_horiz=1.1,
+        description="Massive 100-round continuous suppression. Melts heavy targets and halts incoming zombie swarms in their tracks.",
     ),
     WeaponSpec(
-        key="breaker-12",
-        name="BREAKER-12 TACTICAL",
-        role="Point-Blank Breach Shotgun",
-        caliber="12 Gauge 00 Buck",
-        rpm=140,
-        mag_size=8,
-        reload_sec=3.2,
-        base_damage=96.0,
-        head_mult=1.35,
-        optimal_range=8,
-        max_range=20,
-        recoil_vert=7.5,
-        recoil_horiz=1.5,
-        description="Devastating point-blank stopping power. Significant pellet spread and steep drop-off demand aggressive positioning.",
+        key="katana",
+        name="SHADOW KATANA",
+        role="Secondary / High-Mobility Melee",
+        caliber="Carbon Steel Edge",
+        rpm=120,
+        mag_size=1,
+        reload_sec=0.1,
+        base_damage=1500.0,
+        head_mult=1.60,
+        optimal_range=5,
+        max_range=7,
+        recoil_vert=0.1,
+        recoil_horiz=0.1,
+        description="Silent close-quarters lethal blade. Grants agile flanking speed and instant ambush elimination behind enemy lines.",
     ),
 )
 
@@ -577,7 +647,7 @@ def calculate_build_archetype(points: dict[str, int]) -> ArchetypeResult:
 I18N = {
     "EN": {
         "nav_home": "Home",
-        "nav_super_soldiers": "Super Soldiers",
+        "nav_super_soldiers": "Battle Builds",
         "nav_heist_city": "Heist City",
         "nav_studio": "Studio",
         "hero_title": "WORLDS WITH CONSEQUENCE.",
@@ -601,7 +671,7 @@ I18N = {
     },
     "ES": {
         "nav_home": "Inicio",
-        "nav_super_soldiers": "Super Soldiers",
+        "nav_super_soldiers": "Battle Builds",
         "nav_heist_city": "Heist City",
         "nav_studio": "Estudio",
         "hero_title": "MUNDOS CON CONSECUENCIA.",

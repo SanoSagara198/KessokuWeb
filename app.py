@@ -43,6 +43,8 @@ from kessoku_site.content import (
     WEAPONS,
 )
 from kessoku_site.city_atlas import render_city_atlas
+from kessoku_site.auth import handle_oauth_flow, get_roblox_auth_url, login_as_demo
+from kessoku_site.companion import render_player_companion
 from kessoku_site.theme import get_theme_css
 from kessoku_site.visuals import (
     city_pursuit_figure,
@@ -60,12 +62,15 @@ from kessoku_site.visuals import (
 ROOT = Path(__file__).parent
 
 st.set_page_config(
-    page_title="Kessoku Games",
+    page_title="Kessoku Games — Battle Builds & Heist City",
     page_icon="K",
     layout="wide",
     initial_sidebar_state="collapsed",
     menu_items={"About": "Kessoku Games — systemic Roblox worlds."},
 )
+
+# Process any pending Roblox OAuth 2.0 callback
+handle_oauth_flow()
 
 # Session State Initialization
 if "lang" not in st.session_state:
@@ -95,8 +100,44 @@ def poster(accent_rgb: tuple[int, int, int], seed: int) -> bytes:
 
 def route_from_query() -> str:
     route = st.query_params.get("view", "Home")
-    valid = {"Home", "Super Soldiers", "Heist City", "Studio", "Privacy", "Terms"}
+    if route == "Super Soldiers":
+        route = "Battle Builds"
+    valid = {"Home", "Battle Builds", "Heist City", "Studio", "Companion", "Privacy", "Terms"}
     return route if route in valid else "Home"
+
+
+def companion_page() -> None:
+    hero(
+        "BATTLE BUILDS COMPANION",
+        "OFFLINE ARMORY & PROGRESSION HUB",
+        "Inspect verified live DataStore stats, loadouts, and upgrade curves without launching the game client.",
+        "#76F3FF",
+        "DATA / ROBLOX OPEN CLOUD<br>AUTH / OAUTH 2.0 VERIFIED<br>CURRENCIES / CREDITS + JIGSAW",
+    )
+    user = st.session_state.get("roblox_user")
+    if user:
+        render_player_companion(user)
+    else:
+        st.markdown(
+            """
+            <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(118,243,255,0.25);border-radius:12px;padding:24px;margin-bottom:20px;">
+                <h3 style="color:#F4F2EB;margin-top:0;">Connect Your Roblox Identity</h3>
+                <p style="color:#AEB4BC;font-size:14px;line-height:1.6;">
+                    Sign in with your official Roblox account via <strong>Roblox OAuth 2.0</strong> to link your verified
+                    in-game progression. The companion loads your active battle loadouts, wallet balances (Credits & Jigsaw pieces),
+                    and operator levels directly from Roblox DataStore in read-only mode.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        auth_url = get_roblox_auth_url()
+        col1, col2, _ = st.columns([2, 2, 4])
+        with col1:
+            st.link_button("🔑 Sign in with Roblox", auth_url)
+        with col2:
+            if st.button("👁️ Preview Roster (Demo Account)", key="demo_login_btn"):
+                login_as_demo()
 
 
 def privacy_page() -> None:
@@ -138,12 +179,12 @@ def set_route(route: str) -> None:
 
 def navigation() -> str:
     default = route_from_query()
-    options = ["Home", "Super Soldiers", "Heist City", "Studio"]
+    options = ["Home", "Battle Builds", "Heist City", "Studio", "Companion"]
     default_index = options.index(default) if default in options else 0
     selected = option_menu(
         menu_title=None,
         options=options,
-        icons=["house", "crosshair", "buildings", "diamond"],
+        icons=["house", "crosshair", "buildings", "diamond", "person-badge"],
         default_index=default_index,
         orientation="horizontal",
         styles={
@@ -195,14 +236,14 @@ def home() -> None:
     )
     section(
         "Two worlds. One shared discipline.",
-        "Super Soldiers compresses authority into immediate tactical combat. Heist City expands the same discipline across traffic, police, factions and an urban sandbox.",
+        "Battle Builds compresses authority into immediate tactical combat. Heist City expands the same discipline across traffic, police, factions and an urban sandbox.",
         "PORTFOLIO / ACTIVE PROJECTS",
     )
     left, right = st.columns(2, gap="small")
     with left:
         game_card(SUPER_SOLDIERS, "01")
         if action_button(t["explore_ss"], "home-ss", SUPER_SOLDIERS.accent):
-            set_route("Super Soldiers")
+            set_route("Battle Builds")
     with right:
         game_card(HEIST_CITY, "02")
         if action_button(t["enter_hc"], "home-hc", HEIST_CITY.accent):
@@ -213,8 +254,8 @@ def home() -> None:
         "The shared architecture does not flatten the portfolio. It gives each project enough coherence to express a distinct rhythm, visual language and player role.",
         "PORTFOLIO / CREATIVE DIRECTION",
     )
-    world = st.segmented_control("World", ["SUPER SOLDIERS", "HEIST CITY"], default="SUPER SOLDIERS", label_visibility="collapsed", width="stretch") or "SUPER SOLDIERS"
-    game = SUPER_SOLDIERS if world == "SUPER SOLDIERS" else HEIST_CITY
+    world = st.segmented_control("World", ["BATTLE BUILDS", "HEIST CITY"], default="BATTLE BUILDS", label_visibility="collapsed", width="stretch") or "SUPER SOLDIERS"
+    game = SUPER_SOLDIERS if world == "BATTLE BUILDS" else HEIST_CITY
     art, copy = st.columns([1.08, 0.92], gap="large")
     with art:
         st.image(poster(game.accent_rgb, 71 if game.slug == "super-soldiers" else 1987), width="stretch")
@@ -258,7 +299,7 @@ def super_soldiers() -> None:
     section(
         "A tactical game built around decision quality.",
         SUPER_SOLDIERS.long_description,
-        "SUPER SOLDIERS / EXPERIENCE",
+        "BATTLE BUILDS / EXPERIENCE",
     )
     stat_strip(
         (
@@ -273,7 +314,7 @@ def super_soldiers() -> None:
     section(
         "Built as one combat system, not two disconnected modes.",
         "Arena and survival use the same authoritative rules for damage, movement, cooldowns, bots, score and match state.",
-        "SUPER SOLDIERS / PILLARS",
+        "BATTLE BUILDS / PILLARS",
     )
     feature_grid(SUPER_SOLDIERS)
 
@@ -295,7 +336,7 @@ def super_soldiers() -> None:
     section(
         "The operation unfolds through readable phases.",
         "These phases define the intended player decision sequence. They are not rigid cutscenes; they are the tactical rhythm the systems should consistently create.",
-        "SUPER SOLDIERS / PLAYER LOOP",
+        "BATTLE BUILDS / PLAYER LOOP",
     )
     story_timeline(mode.loop, SUPER_SOLDIERS.accent)
 
@@ -342,21 +383,21 @@ def super_soldiers() -> None:
     section(
         "System dossiers.",
         "The public description can explain why the experience should feel trustworthy without exposing implementation-sensitive detail or turning the page into API documentation.",
-        "SUPER SOLDIERS / SYSTEMS",
+        "BATTLE BUILDS / SYSTEMS",
     )
     detail_accordions(mode.systems, SUPER_SOLDIERS.accent, mode.key)
 
     section(
         "One authoritative topology.",
         "Player and bot intent enter the same fixed simulation. World state is replicated outward for presentation; clients do not feed outcomes back as truth.",
-        "SUPER SOLDIERS / AUTHORITY",
+        "BATTLE BUILDS / AUTHORITY",
     )
     st.plotly_chart(system_topology_figure(SUPER_SOLDIERS.accent), width="stretch", config={"displayModeBar": False})
 
     section(
         "Current development track.",
         "The public roadmap communicates sequence without exposing internal implementation detail or promising dates that are not yet fixed.",
-        "SUPER SOLDIERS / ROADMAP",
+        "BATTLE BUILDS / ROADMAP",
     )
     roadmap(
         (
@@ -572,7 +613,7 @@ def studio() -> None:
 
     section(
         "Closed flight playtest candidate enlistment.",
-        "Submit your operative credentials to participate in upcoming private flight tests for Super Soldiers and Heist City.",
+        "Submit your operative credentials to participate in upcoming private flight tests for Battle Builds and Heist City.",
         "STUDIO / PLAYTEST ENLISTMENT",
     )
     playtest_enlistment_component("#76F3FF")
@@ -625,14 +666,18 @@ if current_view == "Privacy":
     privacy_page()
 elif current_view == "Terms":
     terms_page()
+elif current_view == "Companion":
+    companion_page()
 else:
     view = navigation()
     if view == "Home":
         home()
-    elif view == "Super Soldiers":
+    elif view in {"Battle Builds", "Super Soldiers"}:
         super_soldiers()
     elif view == "Heist City":
         heist_city()
+    elif view == "Companion":
+        companion_page()
     else:
         studio()
 footer()
