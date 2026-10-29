@@ -143,3 +143,15 @@ class ArchetypeResult(BaseModel):
     accent: str
     badge: str
 
+class OperatorSpec(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    id: str
+    name: str
+    division: str
+    role: str
+    base_hp: int
+    hp_per_level: int
+    dodge_ability: str
+    description: str
+    tactical_traits: tuple[str, ...]

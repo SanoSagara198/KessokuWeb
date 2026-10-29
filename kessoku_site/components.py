@@ -567,3 +567,89 @@ def netcode_lab_component(accent: str) -> None:
     with t4:
         st.metric("RECONCILIATION", "100% SECURE" if loss < 15 else "EXTRAPOLATED", "No client spoofing", border=True, width="stretch")
 
+
+def operators_roster_component(operators: tuple[Any, ...], accent: str) -> None:
+    st.markdown(
+        f'''
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px;margin-bottom:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+                <div>
+                    <div style="font-size:18px;font-weight:800;color:#F4F2EB;">OPERATIVE BIOLOGICAL ROSTER</div>
+                    <div style="font-size:13px;color:#AEB4BC;">Authored operatives across the Mortals and Monsters divisions with distinct health pools and combat traits.</div>
+                </div>
+            </div>
+        </div>
+        ''',
+        unsafe_allow_html=True,
+    )
+    div_choice = st.segmented_control("Division", ["ALL (15)", "MORTALS (9)", "MONSTERS (6)"], default="ALL (15)", width="stretch") or "ALL (15)"
+    
+    if "MORTALS" in div_choice:
+        filtered = [op for op in operators if op.division == "MORTALS"]
+    elif "MONSTERS" in div_choice:
+        filtered = [op for op in operators if op.division == "MONSTERS"]
+    else:
+        filtered = list(operators)
+
+    cols = st.columns(3, gap="medium")
+    for i, op in enumerate(filtered):
+        is_monster = op.division == "MONSTERS"
+        card_accent = "#FF764D" if is_monster else "#76F3FF"
+        with cols[i % 3]:
+            st.markdown(
+                f'''
+                <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-left:3px solid {card_accent};border-radius:8px;padding:16px;margin-bottom:16px;min-height:220px;">
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                        <span style="font-size:18px;font-weight:900;color:#F4F2EB;letter-spacing:0.03em;">{op.name}</span>
+                        <span style="font-size:10px;font-weight:800;color:{card_accent};background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:4px;border:1px solid {card_accent};">{op.division}</span>
+                    </div>
+                    <div style="font-size:12px;font-weight:700;color:#AEB4BC;margin-top:2px;">{op.role}</div>
+                    <div style="font-size:13px;color:#F4F2EB;margin-top:8px;font-weight:700;">Base HP: <span style="color:{card_accent};">{op.base_hp:,}</span> <span style="font-size:11px;color:#AEB4BC;font-weight:400;">(+{op.hp_per_level:,}/lvl)</span></div>
+                    <div style="font-size:12px;color:#AEB4BC;line-height:1.5;margin-top:8px;">{op.description}</div>
+                    <div style="margin-top:12px;display:flex;gap:4px;flex-wrap:wrap;">
+                        {"".join(f'<span style="background:rgba(255,255,255,0.04);color:#D9DCE1;font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid rgba(255,255,255,0.08);">{trait}</span>' for trait in op.tactical_traits)}
+                    </div>
+                </div>
+                ''',
+                unsafe_allow_html=True,
+            )
+
+
+def zombie_descent_intel_component(accent: str) -> None:
+    st.markdown(
+        f'''
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,118,77,0.3);border-radius:12px;padding:20px;margin-bottom:16px;">
+            <div style="font-size:18px;font-weight:800;color:#FF764D;letter-spacing:0.02em;">ZOMBIE DESCENT: 10-FLOOR GAUNTLET INTEL</div>
+            <div style="font-size:13px;color:#AEB4BC;margin-top:4px;">
+                Authored encounter trajectory sourced from production fixed-step spawn matrices. 
+                Manage ammunition reserves, coordinate choke-point containment, and brace for milestone boss gates.
+            </div>
+        </div>
+        ''',
+        unsafe_allow_html=True,
+    )
+    
+    stages = (
+        ("FLOOR 01 - 03", "OUTBREAK RECON", "Weak Shamblers (77-110), Early Heavies (20-35), Haste Rushers (10-25)", "Establish initial firing lines. Feather trigger bursts to preserve early ammunition reserves. Avoid corner clustering."),
+        ("FLOOR 04", "HAZARD ESCALATION", "Weak (120), Heavy Brutes (58), Ranged Rifles (16), Toxic Gas (12), Haste (12)", "First arrival of toxic Gas carriers and suppressive Rifle infected. Clear hazard clouds before pushing forward."),
+        ("FLOOR 05", "★ SUBTERRANEAN CHECKPOINT", "Weak (75), Heavies (45), Haste (19) + 1 APEX SUBTERRANEAN BOSS", "Milestone boss gate. Boss possesses massive stagger threshold and heavy ground cleave. Focus fire while kite-dodging."),
+        ("FLOOR 06 - 09", "CATASTROPHIC COLLAPSE", "Weak (130-165), Heavies (64-80), Rifles (34-85), Gas (16-39), Smoke (12-45), Haste (18-78)", "Continuous multi-vector pressure spikes. Smoke infected obscure line of sight; Heavies push squads out of hard cover."),
+        ("FLOOR 10", "★ FINAL EXTRACTION GAGE", "Weak (140), Heavies (80), Rifles (100), Gas (35), Smoke (40), Haste (67) + 2 DUAL APEX BOSSES", "Total subterranean breach. 450+ simultaneous infected pressure. Requires maximum squad coordination and synchronized special ordnance."),
+    )
+    
+    for code, title, composition, doctrine in stages:
+        is_boss = "★" in title
+        col_accent = "#FF764D" if is_boss else "#76F3FF"
+        st.markdown(
+            f'''
+            <div style="background:rgba(255,255,255,0.02);border:1px solid {'rgba(255,118,77,0.5)' if is_boss else 'rgba(255,255,255,0.08)'};border-radius:8px;padding:14px;margin-bottom:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:12px;font-weight:900;color:{col_accent};letter-spacing:0.06em;">{code}</span>
+                    <span style="font-size:14px;font-weight:800;color:#F4F2EB;">{title}</span>
+                </div>
+                <div style="font-size:12px;color:#D9DCE1;margin-top:6px;"><strong>Swarm Composition:</strong> {composition}</div>
+                <div style="font-size:12px;color:#AEB4BC;margin-top:4px;"><strong>Tactical Doctrine:</strong> {doctrine}</div>
+            </div>
+            ''',
+            unsafe_allow_html=True,
+        )

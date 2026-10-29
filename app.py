@@ -28,6 +28,8 @@ from kessoku_site.components import (
     topbar,
     update_card,
     weapon_lab_component,
+    operators_roster_component,
+    zombie_descent_intel_component,
     web_audio_synthesizer,
 )
 from kessoku_site.content import (
@@ -41,6 +43,7 @@ from kessoku_site.content import (
     SUPER_MODES,
     SUPER_SOLDIERS,
     WEAPONS,
+    OPERATORS,
 )
 from kessoku_site.city_atlas import render_city_atlas
 from kessoku_site.auth import handle_oauth_flow, get_roblox_auth_url, login_as_demo
@@ -319,6 +322,13 @@ def super_soldiers() -> None:
     feature_grid(SUPER_SOLDIERS)
 
     section(
+        "Authored operatives & biological archetypes.",
+        "Inspect all 15 playable operatives across the Mortals and Monsters divisions with distinct health pools, dodge profiles and combat traits.",
+        "BATTLE BUILDS / OPERATIVES",
+    )
+    operators_roster_component(OPERATORS, SUPER_SOLDIERS.accent)
+
+    section(
         "Select the operation.",
         "Each mode changes tempo, objectives and pressure while preserving the same combat language. The dossier below describes the player fantasy, objective, encounter rhythm and supporting systems.",
         "INTERACTIVE / MODE BRIEF",
@@ -345,7 +355,8 @@ def super_soldiers() -> None:
         "Inspect ballistic performance profiles, simulated dispersion bloom, and time-to-kill curves under varied target armor and precision parameters.",
         "INTERACTIVE / BALLISTICS LAB",
     )
-    weapon_lab_component(WEAPONS, SUPER_SOLDIERS.accent)
+    weapon_lab_component(WEAPONS,
+    OPERATORS, SUPER_SOLDIERS.accent)
 
     section(
         "Combat pressure laboratory.",
@@ -367,7 +378,14 @@ def super_soldiers() -> None:
         st.metric("MODE", mode.title, border=True, width="stretch")
 
     section(
-        "City of Zombies: outbreak escalation simulator.",
+        "Zombie Descent: 10-floor encounter trajectory.",
+        "Review authored enemy distributions, archetype mutations, and milestone boss gates across all 10 subterranean survival floors.",
+        "BATTLE BUILDS / DESCENT INTEL",
+    )
+    zombie_descent_intel_component(SUPER_SOLDIERS.accent)
+
+    section(
+        "Outbreak escalation simulation model.",
         "Simulate horde escalation, barricade durability decay, and ammunition exhaustion over 20 survival waves based on squad composition.",
         "INTERACTIVE / OUTBREAK MODEL",
     )

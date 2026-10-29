@@ -1,0 +1,2482 @@
+{
+  "categories": [
+    "MORTALS",
+    "MONSTERS"
+  ],
+  "operators": [
+    {
+      "category": "MORTALS",
+      "classification": "SPECIAL FORCES",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "107, 142, 35",
+        "nameColor": "107, 142, 35",
+        "rightEye": "107, 142, 35",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 4200,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 105,
+      "id": "Operator_1",
+      "number": 1,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=5569469408",
+      "passives": [
+        "+30% accuracy",
+        "Double ammo"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6%vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+1 Rocket",
+              "name": "RPG Specialist"
+            },
+            {
+              "desc": "Missiles do no trigger Missile Defense",
+              "name": "Radar Jammer"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+4% bullet damage",
+              "name": "Expanding Bullets"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+25% Fire Rate while crouched",
+              "name": "Emergency Fire Rate"
+            },
+            {
+              "desc": "+25% Fire Rate while crouched",
+              "name": "Emergency Fire Rate"
+            },
+            {
+              "desc": "+20% Bullets Damage",
+              "name": "Heavy Caliber"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=5569410849",
+      "textFont": "Oswald",
+      "titleName": "Soldier"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "ORGANIZED CRIME",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "212, 175, 55",
+        "nameColor": "212, 175, 55",
+        "rightEye": "212, 175, 55",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 4500,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 112,
+      "id": "Operator_8",
+      "number": 2,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=6555794595",
+      "passives": [
+        "+30% fire rate",
+        "Can use 2 main weapons"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "",
+              "name": ""
+            },
+            {
+              "desc": "Gain extra money per Kill",
+              "name": "Contract"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+30% range area",
+              "name": "Third Wish"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=138139324",
+      "textFont": "Oswald",
+      "titleName": "Gangster"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "WESTERN BANDIT",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "184, 115, 51",
+        "nameColor": "184, 115, 51",
+        "rightEye": "184, 115, 51",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 4300,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 108,
+      "id": "Operator_9",
+      "number": 3,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=5610583555",
+      "passives": [
+        "Improved pistols",
+        "+20% aim speed"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+70% pistols weapons damage",
+              "name": "MERCENARY"
+            },
+            {
+              "desc": "Fully reload ammo on weapon switch",
+              "name": "Fast Reload"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+25% fire rate",
+              "name": ""
+            },
+            {
+              "desc": "+25% accuracy",
+              "name": ""
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=5668201766",
+      "textFont": "Oswald",
+      "titleName": "Cowboy"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "COVERT ASSASSIN",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "44, 62, 145",
+        "nameColor": "44, 62, 145",
+        "rightEye": "44, 62, 145",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 4100,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 102,
+      "id": "Operator_6",
+      "number": 4,
+      "pantsTemplate": "rbxassetid://164205334",
+      "passives": [
+        "Double dodge",
+        "Can target in smoke"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+30% movement speed in smoke",
+              "name": "Evasive Maneuver"
+            },
+            {
+              "desc": "Release smoke when at low health",
+              "name": "Smore Screen"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "Smoke has 100% duration and area",
+              "name": "Smoke Screen"
+            },
+            {
+              "desc": "Restored 20% Health on dodge",
+              "name": ""
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "rbxassetid://136395703",
+      "textFont": "Oswald",
+      "titleName": "Shinobi"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "SWORD MASTER",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "220, 20, 60",
+        "nameColor": "220, 20, 60",
+        "rightEye": "220, 20, 60",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 5400,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 135,
+      "id": "Operator_7",
+      "number": 5,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=7051313755",
+      "passives": [
+        "+75% melee damage",
+        "Use two swords"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+60% Melee Damage",
+              "name": ""
+            },
+            {
+              "desc": "Heals for 50% of the damage dealt",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "",
+              "name": ""
+            },
+            {
+              "desc": "",
+              "name": ""
+            },
+            {
+              "desc": "",
+              "name": "Spirit Magic"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=7051317040",
+      "textFont": "Oswald",
+      "titleName": "Samurai"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "SEA HUNTER",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "0, 150, 150",
+        "nameColor": "0, 150, 150",
+        "rightEye": "0, 150, 150",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 5700,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 142,
+      "id": "Operator_10",
+      "number": 6,
+      "pantsTemplate": "rbxassetid://920975657",
+      "passives": [
+        "+20% bullets damage",
+        "+50% cut damage"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6% vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+100% crossbow damage",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": []
+        }
+      ],
+      "shirtTemplate": "rbxassetid://1168060241",
+      "textFont": "Oswald",
+      "titleName": "Pirate"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "NORDIC WARRIOR",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "0,255,21",
+        "nameColor": "152, 245, 255",
+        "rightEye": "0,255,21",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 6600,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 165,
+      "id": "Operator_17",
+      "number": 7,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=6856612975",
+      "passives": [
+        "Extra hp on taking lethal damage por 5 sec.",
+        "Restore full HP when kill rival"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6% vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "Avoid Mines Activation when Cloaked",
+              "name": "Quiet Steps"
+            },
+            {
+              "desc": "+20% Unique Weapon Cooldown Recovery",
+              "name": "Quick Charge"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-7 sec Unique Weapon Cooldown",
+              "name": "Stealth"
+            },
+            {
+              "desc": "Special weapons can be used while cloaked",
+              "name": "Ambush Master"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=6856612116",
+      "textFont": "Oswald",
+      "titleName": "Viking"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "IMPERIAL LEGIONARY",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "142, 36, 170",
+        "nameColor": "142, 36, 170",
+        "rightEye": "142, 36, 170",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 4800,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 120,
+      "id": "Operator_14",
+      "number": 8,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=474152799",
+      "passives": [
+        "Improved bows",
+        "Shield take damage",
+        "Unique Weapon: Shield"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "TODO: restore description",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6% vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "Bullets poison",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "-85% Duration of Detection",
+              "name": "Tactical Camo"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "",
+              "name": "Cosmic"
+            },
+            {
+              "desc": "",
+              "name": "Plasma"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=5359463833",
+      "textFont": "Oswald",
+      "titleName": "Roman"
+    },
+    {
+      "category": "MORTALS",
+      "classification": "MEDIEVAL CRUSADER",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "169, 176, 184",
+        "nameColor": "169, 176, 184",
+        "rightEye": "169, 176, 184",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 6900,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 172,
+      "id": "Operator_11",
+      "number": 9,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=6807698350",
+      "passives": [
+        "-50% Cut Damage",
+        "-50% Hit Damage"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6% vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+60% Melee Damage",
+              "name": ""
+            },
+            {
+              "desc": "-30% general damage taken",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "Adds lightning damage",
+              "name": "Storm Control"
+            },
+            {
+              "desc": "Adds fire damage",
+              "name": "FIre Control"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=6807697595",
+      "textFont": "Oswald",
+      "titleName": "Knight"
+    },
+    {
+      "category": "MONSTERS",
+      "classification": "MACHINE UNIT",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "0, 255, 255",
+        "nameColor": "0, 255, 255",
+        "rightEye": "0, 255, 255",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 5100,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 128,
+      "id": "Operator_18",
+      "number": 10,
+      "pantsTemplate": "rbxassetid://465693223",
+      "passives": [
+        "-50% Bullet Damage Taken",
+        "Reload weapon at rest",
+        "Unique Ability: Self-repair"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6% vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "",
+              "name": ""
+            },
+            {
+              "desc": "+30% Fire Rate",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% Melee Damage Taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+20% Bullets Damage",
+              "name": "High Caliber"
+            },
+            {
+              "desc": "+1 RPG Rocket",
+              "name": "Demolitionist"
+            },
+            {
+              "desc": "RPG ignores Missile Defense",
+              "name": "ECM Missiles"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=237099297",
+      "textFont": "Oswald",
+      "titleName": "Cyborg"
+    },
+    {
+      "category": "MONSTERS",
+      "classification": "ANCIENT ELITE",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "255, 191, 0",
+        "nameColor": "255, 191, 0",
+        "rightEye": "255, 191, 0",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 6300,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 158,
+      "id": "Operator_2",
+      "number": 11,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=16774193955",
+      "passives": [
+        "+30% movement speed",
+        "Reveals rivals and explosives"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "",
+              "name": ""
+            },
+            {
+              "desc": "",
+              "name": "Black Flames"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=16774219812",
+      "textFont": "Oswald",
+      "titleName": "Werewolf"
+    },
+    {
+      "category": "MONSTERS",
+      "classification": "NIGHT LORD",
+      "colors": {
+        "body": "252,252,252",
+        "head": "0,0,0",
+        "leftEye": "255,255,255",
+        "nameColor": "139, 0, 0",
+        "rightEye": "255,255,255",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 6000,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 150,
+      "id": "Operator_3",
+      "number": 12,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=5883957328",
+      "passives": [
+        "+20% bullets damage",
+        "Heals for 50% of the damage dealt"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": []
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=5883918738",
+      "textFont": "Oswald",
+      "titleName": "Vampire"
+    },
+    {
+      "category": "MONSTERS",
+      "classification": "SPECTRE",
+      "colors": {
+        "body": "234,184,146",
+        "head": "0,0,0",
+        "leftEye": "190, 255, 235",
+        "nameColor": "190, 255, 235",
+        "rightEye": "190, 255, 235",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 4000,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 100,
+      "id": "Operator_4",
+      "number": 13,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=123463798",
+      "passives": [
+        "-85% Detection Time",
+        "-75% melee damage",
+        "Unique Ability: Invisibility"
+      ],
+      "ranks": [
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+7% movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20% dodge cooldown",
+              "name": "Acrobatics"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "-6%bullet damage taken",
+              "name": "Tactical Gear"
+            },
+            {
+              "desc": "-40%gas and bleeding damage taken",
+              "name": "First Aid"
+            },
+            {
+              "desc": "-20 melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+6%  vision range",
+              "name": "Perfect Eyesight"
+            },
+            {
+              "desc": "+25% explosives power",
+              "name": "Explosives Expert"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+10% precision",
+              "name": "Sharpshooter"
+            },
+            {
+              "desc": "+40% reload speed",
+              "name": "Dexterity"
+            },
+            {
+              "desc": "+5% range",
+              "name": "Sniper Training"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+40% clip capacity",
+              "name": "Weapon Tuning"
+            },
+            {
+              "desc": "+7 movement speed",
+              "name": "Athletic Training"
+            },
+            {
+              "desc": "-20 explosive damage taken",
+              "name": "Sapper Intuition"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+30% fire movement speed",
+              "name": ""
+            },
+            {
+              "desc": "",
+              "name": "-80% detection time"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "+40% fast HP regen",
+              "name": "Fast Metabolism"
+            },
+            {
+              "desc": "-20% melee damage taken",
+              "name": "Martial Arts"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+6% fire rate",
+              "name": "Military Training"
+            },
+            {
+              "desc": "+12% aim area",
+              "name": "Combat Intuition"
+            },
+            {
+              "desc": "+25% melee damage",
+              "name": "Melee Master"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "+550 HP",
+              "name": "Strong Health"
+            },
+            {
+              "desc": "-10% special weapon cooldown",
+              "name": "Engineer Knowledge"
+            },
+            {
+              "desc": "+15% mine explosion and activation radius",
+              "name": "Pyrochemistry"
+            }
+          ]
+        },
+        {
+          "talents": [
+            {
+              "desc": "",
+              "name": "Rivals can be targeted in smoke"
+            },
+            {
+              "desc": "+20% Scanner Radius",
+              "name": "Boosted Radar"
+            }
+          ]
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=123463780",
+      "textFont": "Oswald",
+      "titleName": "Ghost"
+    },
+    {
+      "category": "MONSTERS",
+      "classification": "SUPERNATURAL",
+      "colors": {
+        "body": "164,42,42",
+        "head": "0,0,0",
+        "leftEye": "200,17,1",
+        "nameColor": "215, 10, 132",
+        "rightEye": "227,68,24",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 7200,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 180,
+      "id": "op_25a1bdf41d664ac7896449a1e50d1cbf",
+      "number": 14,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=5479248194",
+      "passives": [
+        "+80% hit damage",
+        "-30% general damage taken"
+      ],
+      "ranks": [
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": [
+            {
+              "desc": "Heal health after kill enemies",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=6767200248",
+      "textFont": "Oswald",
+      "titleName": "Oni"
+    },
+    {
+      "category": "MONSTERS",
+      "classification": "DEATH",
+      "colors": {
+        "body": "0,0,0",
+        "head": "0,0,0",
+        "leftEye": "90, 90, 100",
+        "nameColor": "90, 90, 100",
+        "rightEye": "90, 90, 100",
+        "textColor": "255,255,255"
+      },
+      "dodgeAbility": "dodge",
+      "hasThreeSpecials": false,
+      "hp": 7500,
+      "hpPerLevel": 1000,
+      "hpRecoveryDelaySeconds": 3,
+      "hpRecoveryDoublingSeconds": 3,
+      "hpRecoveryPerSecond": 188,
+      "id": "op_036570df2d5b4f8f9fb00de1e4408aa6",
+      "number": 15,
+      "pantsTemplate": "http://www.roblox.com/asset/?id=6474013169",
+      "passives": [
+        "Extra health on taking lethal damage for 4 sec",
+        "-4 sec time respawn"
+      ],
+      "ranks": [
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        },
+        {
+          "talents": []
+        }
+      ],
+      "shirtTemplate": "http://www.roblox.com/asset/?id=6474011958",
+      "textFont": "Oswald",
+      "titleName": "Reaper"
+    }
+  ],
+  "schemaVersion": 3
+}
