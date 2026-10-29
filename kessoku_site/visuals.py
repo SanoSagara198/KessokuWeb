@@ -7,7 +7,6 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import pydeck as pdk
 from PIL import Image, ImageDraw, ImageFilter
 
 from .models import Metric, SkillCategory, WeaponSpec
@@ -99,68 +98,6 @@ def city_pursuit_figure(stage: int, accent: str) -> go.Figure:
         hovermode=False,
     )
     return fig
-
-
-def city_deck(stage: int, accent: str) -> pdk.Deck:
-    center_lat, center_lon = -31.42, -64.19
-    delta = 0.00155
-    blocks: list[dict[str, object]] = []
-    rng = np.random.default_rng(42)
-    for x in range(6):
-        for y in range(6):
-            west = center_lon + (x - 3) * delta
-            south = center_lat + (y - 3) * delta
-            inset = delta * .18
-            tone = int(rng.integers(24, 58))
-            blocks.append(
-                {
-                    "polygon": [
-                        [west + inset, south + inset],
-                        [west + delta - inset, south + inset],
-                        [west + delta - inset, south + delta - inset],
-                        [west + inset, south + delta - inset],
-                    ],
-                    "height": int(rng.integers(30, 155)),
-                    "color": [tone, tone + 8, tone + 15, 210],
-                }
-            )
-    target_route = [[center_lon - .0037, center_lat + .0036], [center_lon - .0017, center_lat + .0036], [center_lon - .0017, center_lat + .0018], [center_lon + .0015, center_lat + .0018], [center_lon + .0015, center_lat], [center_lon + .0032, center_lat]]
-    police_route_a = [[center_lon + .0043, center_lat - .0035], [center_lon + .0029, center_lat - .0035], [center_lon + .0029, center_lat - .0002], [center_lon + .0015, center_lat]]
-    police_route_b = [[center_lon - .0032, center_lat - .004], [center_lon - .0032, center_lat - .0018], [center_lon - .0002, center_lat - .0018], [center_lon - .0002, center_lat], [center_lon + .0015, center_lat]]
-    route_index = max(1, min(stage, len(target_route) - 1))
-    r, g, b = _hex_rgb(accent)
-    layers = [
-        pdk.Layer(
-            "PolygonLayer",
-            blocks,
-            get_polygon="polygon",
-            get_elevation="height",
-            get_fill_color="color",
-            get_line_color=[255, 255, 255, 32],
-            line_width_min_pixels=1,
-            extruded=True,
-            wireframe=True,
-            pickable=True,
-        ),
-        pdk.Layer("PathLayer", [{"path": target_route[: route_index + 1]}], get_path="path", get_color=[r, g, b, 255], width_min_pixels=5),
-        pdk.Layer("PathLayer", [{"path": police_route_a[: min(route_index + 1, len(police_route_a))]}], get_path="path", get_color=[102, 168, 255, 230], width_min_pixels=4),
-        pdk.Layer("PathLayer", [{"path": police_route_b[: min(route_index + 1, len(police_route_b))]}], get_path="path", get_color=[157, 197, 255, 210], width_min_pixels=4),
-        pdk.Layer(
-            "ScatterplotLayer",
-            [{"position": target_route[route_index], "label": "TARGET"}],
-            get_position="position",
-            get_fill_color=[r, g, b, 255],
-            get_radius=48,
-            radius_min_pixels=8,
-            pickable=True,
-        ),
-    ]
-    return pdk.Deck(
-        layers=layers,
-        initial_view_state=pdk.ViewState(latitude=center_lat, longitude=center_lon, zoom=14.35, pitch=56, bearing=-28),
-        map_style=None,
-        tooltip={"html": "<b>{label}</b><br/>Height: {height}", "style": {"backgroundColor": "#0b0d11", "color": "#f4f2eb"}},
-    )
 
 
 def response_doctrine_figure(threat: int, evidence: int, mobility: int, accent: str) -> go.Figure:

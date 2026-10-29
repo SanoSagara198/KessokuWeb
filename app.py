@@ -42,9 +42,9 @@ from kessoku_site.content import (
     SUPER_SOLDIERS,
     WEAPONS,
 )
+from kessoku_site.city_atlas import render_city_atlas
 from kessoku_site.theme import get_theme_css
 from kessoku_site.visuals import (
-    city_deck,
     city_pursuit_figure,
     combat_pressure_figure,
     metric_radar,
@@ -426,12 +426,11 @@ def heist_city() -> None:
     st.plotly_chart(pursuit_sandbox_figure(strat, pressure_lvl, alignment.accent), width="stretch", config={"displayModeBar": False})
 
     section(
-        "The same pursuit rendered as a physical city volume.",
-        "The 3D grid is a synthetic design visualization: it demonstrates bounded city blocks, route separation and intercept geometry without claiming to be a live game map.",
-        "INTERACTIVE / 3D CITY GRID",
+        "Explore the streets of NewCity.",
+        "Discover the city's actual layout: boulevards, sidewalks and perimeter junctions. Toggle layers and jump to a junction to explore the details.",
+        "INTERACTIVE / NEWCITY ATLAS",
     )
-    stage = st.slider("Pursuit progression stage", min_value=1, max_value=8, value=5, width="stretch")
-    st.pydeck_chart(city_deck(stage, alignment.accent), width="stretch", height=590)
+    render_city_atlas()
 
     section(
         "Response doctrine simulator.",
@@ -553,7 +552,7 @@ def studio() -> None:
     stack = (
         ("STREAMLIT", "Application runtime, routing state, responsive layout primitives and Community Cloud deployment."),
         ("PLOTLY", "Interactive tactical profiles, pursuit diagrams, response doctrine, topology and progression exploration."),
-        ("PYDECK", "A synthetic 3D city-grid presentation that demonstrates volume, route separation and interception geometry."),
+        ("NEWCITY ATLAS", "An interactive map of captured NewCity geometry with layers, junction search and navigation."),
         ("ALTAIR + PANDAS", "Declarative public roadmap visualization and structured display data."),
         ("NUMPY + PILLOW", "Deterministic cached WebP art-direction placeholders without remote media dependencies."),
         ("PYDANTIC", "Immutable validated models for games, modes, alignments, skills, weapons and public devlog dispatches."),

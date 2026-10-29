@@ -32,7 +32,7 @@ A cinematic, interactive Streamlit portfolio for **Kessoku Games**, **Super Sold
 - Detailed Criminal, Police, and Vigilante alignment dossiers
 - Progression, methods, consequences, and five-stage role loops
 - Two-dimensional predictive pursuit visualization
-- PyDeck synthetic 3D city grid
+- Actual NewCity atlas with layer controls, junction navigation, pan and zoom
 - Threat/evidence/mobility response-doctrine simulator
 - Complete 24-skill Hacking, Combat, Driving, and Intelligence catalog
 - Interactive progression sunburst and category dossiers
@@ -53,7 +53,6 @@ A cinematic, interactive Streamlit portfolio for **Kessoku Games**, **Super Sold
 - streamlit-lottie
 - Plotly
 - Altair
-- PyDeck
 - NetworkX
 - Pandas
 - NumPy
@@ -83,7 +82,7 @@ The validator checks Python syntax, deprecated Streamlit width usage, dependency
 
 Streamlit Community Cloud should use:
 
-- Branch: `main` after review and merge
+- Branch: `main` (completed, validated changes are pushed automatically per `AGENTS.md`)
 - Entry point: `app.py`
 - Python: `3.12`
 
@@ -132,3 +131,9 @@ Charts and simulators communicate design intent. They are not live telemetry, pl
 ## Public-link policy
 
 Do not publish invented Roblox, Discord, YouTube, press, playtest, or contact destinations. Canonical links should be added only after they are confirmed.
+
+## NewCity atlas
+
+The Heist City page embeds the actual NewCity geometry snapshot captured on 28 October 2026, replacing the synthetic Pydeck grid. `assets/maps/newcity.svg` preserves the source atlas geometry; `assets/maps/atlas.html` provides responsive Kessoku styling, layer toggles, junction selection, pan, zoom and keyboard navigation. `kessoku_site/city_atlas.py` caches and embeds the self-contained viewer without external requests.
+
+The snapshot is a geometric projection. Mesh bounds do not establish triangle surfaces or collision, and optional planning reservations do not represent installed landmarks. It is not live gameplay telemetry. Source: HeistCity-CityPlanner `NewCity/docs/evidence/asbuilt_20261028/index.html`. Refresh the geometry from a new documented capture rather than editing roads in the website.
