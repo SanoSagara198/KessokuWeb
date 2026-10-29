@@ -50,6 +50,10 @@ from kessoku_site.auth import handle_oauth_flow, get_roblox_auth_url, login_as_d
 from kessoku_site.companion import render_player_companion
 from kessoku_site.theorycrafter import render_loadout_theorycrafter
 from kessoku_site.vehicles import render_heist_vehicle_showroom
+from kessoku_site.quick_recon import render_quick_recon_terminal
+from kessoku_site.mission_intel import render_operative_duel_matrix, render_zombie_descent_planner
+from kessoku_site.dispatch_scanner import render_dispatch_scanner, render_vehicle_comparison
+from kessoku_site.cluster_status import render_server_clusters_matrix
 from kessoku_site.theme import get_theme_css
 from kessoku_site.visuals import (
     city_pursuit_figure,
@@ -239,6 +243,14 @@ def home() -> None:
         ),
         "#F4F2EB",
     )
+
+    section(
+        "Studio intelligence terminal & quick recon.",
+        "Query authored specifications across all 15 operatives, 56 weapons, and 35 production pursuit vehicles.",
+        "INTELLIGENCE / QUICK RECON",
+    )
+    render_quick_recon_terminal(SUPER_SOLDIERS.accent)
+
     section(
         "Two worlds. One shared discipline.",
         "Battle Builds compresses authority into immediate tactical combat. Heist City expands the same discipline across traffic, police, factions and an urban sandbox.",
@@ -331,6 +343,13 @@ def super_soldiers() -> None:
     operators_roster_component(OPERATORS, SUPER_SOLDIERS.accent)
 
     section(
+        "Operative tactical matrix: head-to-head duel simulator.",
+        "Direct ballistic comparison between any two authored combatants across the Mortals and Monsters divisions with dynamic level scaling and hit-to-kill telemetry.",
+        "INTERACTIVE / DUEL SIMULATOR",
+    )
+    render_operative_duel_matrix(SUPER_SOLDIERS.accent)
+
+    section(
         "Select the operation.",
         "Each mode changes tempo, objectives and pressure while preserving the same combat language. The dossier below describes the player fantasy, objective, encounter rhythm and supporting systems.",
         "INTERACTIVE / MODE BRIEF",
@@ -391,6 +410,13 @@ def super_soldiers() -> None:
         "BATTLE BUILDS / DESCENT INTEL",
     )
     zombie_descent_intel_component(SUPER_SOLDIERS.accent)
+
+    section(
+        "Zombie Descent: subterranean mission planner & swarm density.",
+        "Interactive floor-by-floor encounter trajectory, enemy swarm mass calculation, and milestone boss warning gates across all 10 subterranean floors.",
+        "INTERACTIVE / DESCENT PLANNER",
+    )
+    render_zombie_descent_planner(SUPER_SOLDIERS.accent)
 
     section(
         "Outbreak escalation simulation model.",
@@ -526,6 +552,13 @@ def heist_city() -> None:
     st.plotly_chart(pursuit_sandbox_figure(strat, pressure_lvl, alignment.accent), width="stretch", config={"displayModeBar": False})
 
     section(
+        "NCPD tactical radio dispatch scanner.",
+        "Live audio transcripts and interception radio calls across NewCity metropolitan sectors.",
+        "INTERACTIVE / POLICE SCANNER",
+    )
+    render_dispatch_scanner(HEIST_CITY.accent)
+
+    section(
         "Explore the streets of NewCity.",
         "Discover the city's actual layout: boulevards, sidewalks and perimeter junctions. Toggle layers and jump to a junction to explore the details.",
         "INTERACTIVE / NEWCITY ATLAS",
@@ -538,6 +571,13 @@ def heist_city() -> None:
         "HEIST CITY / FLEET SHOWROOM",
     )
     render_heist_vehicle_showroom(HEIST_CITY.accent)
+
+    section(
+        "Vehicle pursuit matrix: intercept comparison.",
+        "Compare top speed, ramming mass, ballistic durability, and crew capacity between any two fleet vehicles.",
+        "INTERACTIVE / INTERCEPT MATRIX",
+    )
+    render_vehicle_comparison(HEIST_CITY.accent)
 
     section(
         "Response doctrine simulator.",
@@ -622,6 +662,13 @@ def studio() -> None:
                 f'<article class="k-feature" style="--accent:#F4F2EB;margin-bottom:1rem"><div class="k-feature-num">0{idx + 1} / PRINCIPLE</div><h3>{title}</h3><p>{copy}</p></article>',
                 unsafe_allow_html=True,
             )
+
+    section(
+        "Global server clusters & authoritative topology.",
+        "Low-latency regional edge instances executing fixed 60Hz tick loops with 250ms history rewind buffers.",
+        "STUDIO / GLOBAL TOPOLOGY",
+    )
+    render_server_clusters_matrix("#76F3FF")
 
     section(
         "Authoritative server netcode & lag compensation laboratory.",

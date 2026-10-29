@@ -141,19 +141,27 @@ def topbar() -> None:
     st.markdown(
         """
         <div class="k-topline">
-          <div class="k-brand"><div class="k-mark"><span>K</span></div><div><div class="k-word">KESSOKU</div><div class="k-sub">SYSTEMIC GAMES ON ROBLOX</div></div></div>
-          <div class="k-live"><span class="k-dot"></span> DEVELOPMENT SIGNAL ACTIVE</div>
+          <div class="k-brand"><div class="k-mark"><span>K</span></div><div><div class="k-word">KESSOKU</div><div class="k-sub">SYSTEMIC WORLDS ON ROBLOX &bull; ARGENTINA</div></div></div>
+          <div class="k-live" style="display:flex;align-items:center;gap:12px;font-family:monospace;font-size:11px;flex-wrap:wrap;">
+            <span style="color:#76F3FF;display:flex;align-items:center;gap:6px;"><span class="k-dot" style="background:#76F3FF;box-shadow:0 0 8px #76F3FF;"></span> 60Hz SERVER AUTHORITY</span>
+            <span style="color:rgba(255,255,255,0.25);">|</span>
+            <span style="color:#D9DCE1;">TICK: 16.6ms</span>
+            <span style="color:rgba(255,255,255,0.25);">|</span>
+            <span style="color:#8CFFAA;">LATENCY: ~18ms</span>
+            <span style="color:rgba(255,255,255,0.25);">|</span>
+            <span style="color:#AEB4BC;">ROLLBACK BUFFER: 250ms</span>
+          </div>
         </div>
         <div class="k-world-marquee" aria-hidden="true">
           <div class="k-world-marquee-track">
-            <span>SUPER SOLDIERS / TACTICAL PRESSURE</span>
-            <span>HEIST CITY / URBAN CONSEQUENCE</span>
-            <span>SERVER AUTHORITY / SHARED TRUTH</span>
-            <span>KESSOKU / ARGENTINA</span>
-            <span>SUPER SOLDIERS / TACTICAL PRESSURE</span>
-            <span>HEIST CITY / URBAN CONSEQUENCE</span>
-            <span>SERVER AUTHORITY / SHARED TRUTH</span>
-            <span>KESSOKU / ARGENTINA</span>
+            <span>BATTLE BUILDS / 5V5 TACTICAL COMBAT</span>
+            <span>HEIST CITY / 35-VEHICLE FLEET & NEWCITY ATLAS</span>
+            <span>60HZ SERVER AUTHORITY / ZERO CLIENT HIT SPOOFING</span>
+            <span>OFFLINE COMPANION / LIVE ROBLOX DATASTORE</span>
+            <span>BATTLE BUILDS / 5V5 TACTICAL COMBAT</span>
+            <span>HEIST CITY / 35-VEHICLE FLEET & NEWCITY ATLAS</span>
+            <span>60HZ SERVER AUTHORITY / ZERO CLIENT HIT SPOOFING</span>
+            <span>OFFLINE COMPANION / LIVE ROBLOX DATASTORE</span>
           </div>
         </div>
         """,
@@ -371,10 +379,12 @@ def web_audio_synthesizer(enabled: bool = True) -> None:
             }
             document.addEventListener('click', function(e) {
                 const target = e.target;
-                if (target.closest('button') || target.closest('[data-testid="stPills"] button') || target.closest('[data-testid="stSegmentedControl"] button')) {
-                    playBeep(520, 880, 0.05, 'sine', 0.05);
+                if (target.closest('button') || target.closest('[data-testid="stPills"] button') || target.closest('[data-testid="stSegmentedControl"] button') || target.closest('.stSelectbox')) {
+                    playBeep(540, 920, 0.04, 'sine', 0.04);
                 } else if (target.closest('div[data-testid="stExpander"]')) {
-                    playBeep(340, 480, 0.07, 'triangle', 0.05);
+                    playBeep(320, 460, 0.06, 'triangle', 0.04);
+                } else if (target.closest('.stSlider') || target.closest('input[type="range"]')) {
+                    playBeep(420, 680, 0.03, 'sine', 0.03);
                 }
             }, true);
         })();
