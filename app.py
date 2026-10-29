@@ -48,6 +48,8 @@ from kessoku_site.content import (
 from kessoku_site.city_atlas import render_city_atlas
 from kessoku_site.auth import handle_oauth_flow, get_roblox_auth_url, login_as_demo
 from kessoku_site.companion import render_player_companion
+from kessoku_site.theorycrafter import render_loadout_theorycrafter
+from kessoku_site.vehicles import render_heist_vehicle_showroom
 from kessoku_site.theme import get_theme_css
 from kessoku_site.visuals import (
     city_pursuit_figure,
@@ -358,6 +360,13 @@ def super_soldiers() -> None:
     weapon_lab_component(WEAPONS, SUPER_SOLDIERS.accent)
 
     section(
+        "Loadout theorycrafter & combat synergy lab.",
+        "Construct custom builds across all 15 authored operatives and 56 weapons. Calculate live DPS, sustained throughput, mobility penalties, and exact Time-to-Kill (TTK) against every biological health pool.",
+        "INTERACTIVE / SYNERGY LAB",
+    )
+    render_loadout_theorycrafter(SUPER_SOLDIERS.accent)
+
+    section(
         "Combat pressure laboratory.",
         "Adjust operation intensity and squad posture to visualize how tactical load can rise while squad capability falls. This is a design profile, not live telemetry.",
         "INTERACTIVE / PRESSURE MODEL",
@@ -522,6 +531,13 @@ def heist_city() -> None:
         "INTERACTIVE / NEWCITY ATLAS",
     )
     render_city_atlas()
+
+    section(
+        "NewCity vehicle fleet & pursuit catalog.",
+        "Verified inventory of 35 production models cataloged in Studio across Law Enforcement, Armored SWAT, Heavy Logistics, and Apex Hypercars.",
+        "HEIST CITY / FLEET SHOWROOM",
+    )
+    render_heist_vehicle_showroom(HEIST_CITY.accent)
 
     section(
         "Response doctrine simulator.",

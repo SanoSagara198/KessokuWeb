@@ -1,10 +1,28 @@
 from __future__ import annotations
 
 import base64
+import contextlib
 from html import escape
+from typing import Any
 
 import streamlit as st
-from streamlit_extras.stylable_container import stylable_container
+
+try:
+    from streamlit_extras.stylable_container import stylable_container
+except Exception:
+    @contextlib.contextmanager
+    def stylable_container(key: str, css_styles: str | list[str]):
+        styles = css_styles if isinstance(css_styles, str) else "\n".join(css_styles)
+        st.markdown(
+            f'''<style>
+            div[data-testid="stVerticalBlock"]:has(div.st-key-{key}) {{
+                {styles}
+            }}
+            </style>''',
+            unsafe_allow_html=True,
+        )
+        with st.container(key=key):
+            yield
 
 from .campaign import CAMPAIGN_CSS
 from .content import ARCHETYPES, I18N, calculate_build_archetype
